@@ -19,20 +19,18 @@ public class MapGenerator : MonoBehaviour
         {
             position = this.GetPosition(i);
 
-            gameObject = Instantiate(normalRaceTracks[Random.Range(0, normalRaceTracks.Length)], position, Quaternion.identity);
+            gameObject = Instantiate(normalRaceTracks[Random.Range(0, normalRaceTracks.Length)], position, Quaternion.identity, transform);
             gameObject.transform.Rotate(new Vector3(0f, rotation, 0f));
             gameObject.name = "PistaN" + i;
-
         }
 
         position = this.GetPosition(3);
 
-        gameObject = Instantiate(startRaceTracks[Random.Range(0, startRaceTracks.Length)], position, Quaternion.identity);
+        gameObject = Instantiate(startRaceTracks[Random.Range(0, startRaceTracks.Length)], position, Quaternion.identity, transform);
         gameObject.transform.Rotate(new Vector3(0f, rotation, 0f));
         gameObject.name = "PistaInicio";
 
     }
-
 
     private Vector3 GetPosition(int i)
     {
@@ -45,10 +43,4 @@ public class MapGenerator : MonoBehaviour
             _ => new Vector3(0, 0.1f, 0),
         };
     }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-
-    // }
 }
