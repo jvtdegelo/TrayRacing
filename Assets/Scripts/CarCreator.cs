@@ -2,44 +2,57 @@ using UnityEngine;
 
 public class CarManager : MonoBehaviour
 {
-    // Array de prefabs de carros
     public GameObject[] carPrefabs;
-    // Posição inicial onde o carro será instanciado
-    public Transform spawnPoint;
-    // Configurações padrão do Particle System
-    public ParticleSystem particleSystemPrefab;
+    public GameObject selectedCarPrefab;
+    public GameObject particleControllerPrefab;
 
     void Start()
     {
-        // Seleciona aleatoriamente um carro prefab
-        GameObject selectedCarPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
+        // if has not selected a car prefab, selects it randomly
+        if (selectedCarPrefab == null)
+            selectedCarPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
 
-        // Instancia o carro selecionado
-        GameObject carInstance = Instantiate(selectedCarPrefab, spawnPoint.position, spawnPoint.rotation);
+        // instanciates the selected car
+        GameObject carInstance = Instantiate(selectedCarPrefab, transform);
+        carInstance.transform.localPosition = new Vector3(0f, -0.45f, 0f);
+        carInstance.name = "CarModel";
 
-        // Adiciona Particle Systems às rodas
-        AddParticleSystemToWheels(carInstance);
+        AddParticleControllerToWheels(carInstance);
     }
 
-    void AddParticleSystemToWheels(GameObject car)
+    void Update() { }
+
+    private void AddParticleControllerToWheels(GameObject car)
     {
-        // Nomes das rodas
+        // names of the wheel sprites (in all cars)
         string[] wheelNames = { "wheel_backLeft", "wheel_backRight", "wheel_frontLeft", "wheel_frontRight" };
+
+        CarController carController = this.GetComponent<CarController>();
+
+        if (carController == null)
+        {
+            Debug.LogError("Could not find CarController on Component " + this.name);
+            return;
+        }
 
         foreach (string wheelName in wheelNames)
         {
-            // Encontra a roda pelo nome
+            // finds the wheel by name
             Transform wheel = car.transform.Find(wheelName);
 
-            if (wheel != null)
-            {
-                // Adiciona o componente Particle System à roda
-                ParticleSystem particleSystem = Instantiate(particleSystemPrefab, wheel);
-                particleSystem.transform.localPosition = Vector3.zero; // Ajusta a posição do Particle System
-            }
+            if (wheel == null) Debug.LogError("Could not find " + wheelName);
             else
             {
-                Debug.LogError("Roda não encontrada: " + wheelName);
+                // adds the particle controller to the wheels
+                GameObject particleController = Instantiate(particleControllerPrefab, wheel);
+
+                // adds the car rigidbody to the particle controller (required)
+                ParticleController controllerClass = particleController.GetComponent<ParticleController>();
+                controllerClass.SetCarRigidbody(carController.GetCarRigidbody());
+
+                // sets the front wheels to the car controller (for it to steer them)
+                if (wheelName == "wheel_frontLeft") carController.SetFrontLeftWheel(wheel);
+                if (wheelName == "wheel_frontRight") carController.SetFrontRightWheel(wheel);
             }
         }
     }
