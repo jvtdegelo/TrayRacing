@@ -7,25 +7,24 @@ public class ParticleController : MonoBehaviour
 {
 
     public float maximumSpeed = 50f;
-    private Color dirtColor = new Color(0.4f, 0.2f, 0.1f); // Marrom
-    private Color sandColor = new Color(0.96f, 0.87f, 0.70f); // Bege
+    public Color dirtColor = new Color(0.4f, 0.2f, 0.1f); // Marrom
+    public Color sandColor = new Color(0.96f, 0.87f, 0.70f); // Bege
     public LayerMask whatIsGround;
     public LayerMask whatIsDirt;
-    public float groundRayLength = .5f;
-    public Transform groundRayPoint;
-    public float maxEmission = 25f;
+    public Transform rayPoint;
+    public float rayLength = .5f;
     private float emissionRate;
+    public float maxEmission = 25f;
     public ParticleSystem particle;
-
     public Rigidbody carRigidbody;
 
-    void Start()
-    {
-        // prevent "double-movement" of sphere and car (parent)
-    }
+    void Start() { }
 
-    void Update()
+    void Update() { }
+
+    public void SetCarRigidbody(Rigidbody carRigidbody)
     {
+        this.carRigidbody = carRigidbody;
     }
 
     private void FixedUpdate()
@@ -35,39 +34,36 @@ public class ParticleController : MonoBehaviour
 
         float speed = carRigidbody.velocity.magnitude;
 
-        // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
-        bool isOnGround = Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround);
-
-        // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
-        bool isOnDirt = Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsDirt);
+        // the car is on a terrain X if a ray, starting on groundRayPoint, going downward for its length, hits the terrain
+        bool isOnGround = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, whatIsGround);
+        bool isOnDirt = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, whatIsDirt);
 
         // add particle emission if car is moving and on ground
-        if ((isOnGround || isOnDirt) && speed > 0)
+        if ((isOnGround || isOnDirt) && speed > 1)
         {
-            // TODO: emissionRate baseado em velocidade, e maior quando fazendo curva?
-            emissionRate = maxEmission;
-        }
-        // Verifica a tag ou material do terreno atingido
-        // if (hit.collider.gameObject.layer == whatIsGround)
-        if (isOnGround)
-        {
-            SetParticleColor(particle, dirtColor);
-        }
-        // else if (hit.collider.gameObject.layer == whatIsDirt)
-        else if (isOnDirt)
-        {
-            SetParticleColor(particle, sandColor);
+            emissionRate = Helpers.Map(speed, 0, maximumSpeed, 0, maxEmission);
         }
 
-        var emissionModule = particle.emission;
-        emissionModule.rateOverTime = emissionRate;
+        // defines the color based on the terrain
+        if (isOnGround)
+            SetParticleColor(dirtColor);
+        else if (isOnDirt)
+            SetParticleColor(sandColor);
+
+        SetEmissionRate(emissionRate);
     }
 
-
-    void SetParticleColor(ParticleSystem particleSystem, Color color)
+    /// <summary> Set the color of the ParticleSystem </summary>
+    void SetParticleColor(Color color)
     {
-        // Modificar a cor das partículas
-        var main = particleSystem.main;
+        var main = particle.main;
         main.startColor = color;
+    }
+
+    /// <summary> Set the emission rate of the ParticleSystem </summary>
+    void SetEmissionRate(float emissionRate)
+    {
+        var emissionModule = particle.emission;
+        emissionModule.rateOverTime = emissionRate;
     }
 }
