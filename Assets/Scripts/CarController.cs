@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public Rigidbody sphere;
+    public Rigidbody carRigidbody;
 
     public float forwardAcceleration = 8f;
     public float reverseAcceleration = 4f;
@@ -24,14 +24,29 @@ public class CarController : MonoBehaviour
     public float groundRayLength = .5f;
     public Transform groundRayPoint;
 
-    public Transform leftFrontWheel, rightFrontWheel;
+    public Transform frontLeftWheel, frontRightWheel;
     public float maxTurnWheel = 25f;
     public float maxEmission = 25f;
+
+
+    public void SetFrontLeftWheel(Transform frontLeftWheel)
+    {
+        this.frontLeftWheel = frontLeftWheel;
+    }
+    public void SetFrontRightWheel(Transform frontRightWheel)
+    {
+        this.frontRightWheel = frontRightWheel;
+    }
+
+    public Rigidbody GetCarRigidbody()
+    {
+        return this.carRigidbody;
+    }
 
     void Start()
     {
         // prevent "double-movement" of sphere and car (parent)
-        sphere.transform.parent = null;
+        carRigidbody.transform.parent = null;
     }
 
     void Update()
@@ -54,15 +69,20 @@ public class CarController : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationDiff);
         }
 
-        // get the front wheel angles
-        Vector3 leftWheelAngles = leftFrontWheel.localRotation.eulerAngles;
-        Vector3 rightWheelAngles = rightFrontWheel.localRotation.eulerAngles;
 
-        // rotate them on the y axis based on the horizontal input
-        leftFrontWheel.localRotation = Quaternion.Euler(leftWheelAngles.x, (horizontalInput * maxTurnWheel) - 180, leftWheelAngles.z);
-        rightFrontWheel.localRotation = Quaternion.Euler(rightWheelAngles.x, horizontalInput * maxTurnWheel, rightWheelAngles.z);
+        // Example of using the front wheels in the update method
+        if (frontRightWheel != null && frontLeftWheel != null)
+        {
+            // get the front wheel angles
+            Vector3 leftWheelAngles = frontLeftWheel.localRotation.eulerAngles;
+            Vector3 rightWheelAngles = frontRightWheel.localRotation.eulerAngles;
 
-        transform.position = sphere.transform.position;
+            // rotate them on the y axis based on the horizontal input
+            frontLeftWheel.localRotation = Quaternion.Euler(leftWheelAngles.x, (horizontalInput * maxTurnWheel) - 180, leftWheelAngles.z);
+            frontRightWheel.localRotation = Quaternion.Euler(rightWheelAngles.x, horizontalInput * maxTurnWheel, rightWheelAngles.z);
+        }
+
+        transform.position = carRigidbody.transform.position;
     }
 
     private void FixedUpdate()
@@ -80,19 +100,19 @@ public class CarController : MonoBehaviour
             // TODO: verificar se, usando a logica do left/right wheel, fica mais suave
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
 
-            sphere.drag = dragOnGround;
+            carRigidbody.drag = dragOnGround;
             // accelerates the car
             if (Mathf.Abs(speedInput) > 0)
             {
-                sphere.AddForce(transform.forward * speedInput);
+                carRigidbody.AddForce(transform.forward * speedInput);
             }
         }
         else
         {
             // has less drag when on air
-            sphere.drag = 0.1f;
+            carRigidbody.drag = 0.1f;
             // adds extra gravitational force for more realism
-            sphere.AddForce(incrementGravityForce * 100f * Vector3.down);
+            carRigidbody.AddForce(incrementGravityForce * 100f * Vector3.down);
         }
     }
 }
