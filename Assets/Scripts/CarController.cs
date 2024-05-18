@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
+// TODO: CRIAR UM PARTICLE CONTROLLER, E COLOCAR UM DELE EM CADA WHEEL
 public class CarController : MonoBehaviour
 {
     public Rigidbody sphere;
@@ -14,12 +15,16 @@ public class CarController : MonoBehaviour
     public float dragOnGround = 3f;
 
     public float incrementGravityForce = 10f;
+    public Color dirtColor = new Color(1f, 0f, 0f); // Marrom
+    // public Color dirtColor = new Color(0.4f, 0.2f, 0.1f); // Marrom
+    public Color sandColor = new Color(0.96f, 0.87f, 0.70f); // Bege
 
     private float speedInput;
 
-    private bool isOnGround;
+    private bool isOnGround, isOnDirt;
 
     public LayerMask whatIsGround;
+    public LayerMask whatIsDirt;
     public float groundRayLength = .5f;
     public Transform groundRayPoint;
 
@@ -29,6 +34,9 @@ public class CarController : MonoBehaviour
     public ParticleSystem[] dustTrail;
     public float maxEmission = 25f;
     private float emissionRate;
+    // public ParticleSystem testeParticle;
+
+    // [SerializeField] GameObject[] WheelDustTrails;
 
     void Start()
     {
@@ -48,7 +56,7 @@ public class CarController : MonoBehaviour
         else
             speedInput = verticalInput * reverseAcceleration * 1000f;
 
-        if (isOnGround)
+        if (isOnGround || isOnDirt)
         {
             // rotates, on the y axis, when is moving (verticalInput) and turning (horizontalInput)
             // the signal for the rotation is giver both by the horizontalInput and the verticalInput
@@ -75,19 +83,20 @@ public class CarController : MonoBehaviour
         // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
         isOnGround = Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround);
 
-        if (isOnGround)
+        // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
+        isOnDirt = Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsDirt);
+
+        if (isOnGround || isOnDirt)
         {
             // rotates the car upwards/downwards if it is moving on a slope
             // TODO: verificar se, usando a logica do left/right wheel, fica mais suave
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
 
             sphere.drag = dragOnGround;
-            // accelerates the car, and add particle emission
+            // accelerates the car
             if (Mathf.Abs(speedInput) > 0)
             {
                 sphere.AddForce(transform.forward * speedInput);
-                // TODO: emissionRate baseado em velocidade, e maior quando fazendo curva?
-                emissionRate = maxEmission;
             }
         }
         else
@@ -95,12 +104,6 @@ public class CarController : MonoBehaviour
             sphere.drag = 0.1f; // has less drag when on air
             // adds extra gravitational force for more realism
             sphere.AddForce(-incrementGravityForce * 100f * Vector3.up);
-        }
-
-        foreach (ParticleSystem part in dustTrail)
-        {
-            var emissionModule = part.emission;
-            emissionModule.rateOverTime = emissionRate;
         }
     }
 }
