@@ -5227,6 +5227,7 @@ MonoBehaviour:
   startRaceTracks:
   - {fileID: 6137762519006516816, guid: a957548829444f843bda6f101ed35c9c, type: 3}
   - {fileID: 6137762519006516816, guid: b1ed73c408e91f24da819c09a47bc727, type: 3}
+  - {fileID: 6137762519006516816, guid: 95dfcb58c2de24042b59c708a940c9a0, type: 3}
   normalRaceTracks:
   - {fileID: 6137762519006516816, guid: f638e44ed1978264db7f84c0f8410592, type: 3}
   - {fileID: 6137762519006516816, guid: 7f680d3f58156da4b93c2c9167818506, type: 3}
