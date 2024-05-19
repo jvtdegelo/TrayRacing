@@ -1329,7 +1329,7 @@ PrefabInstance:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3003380487037874556, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -24029,7 +24029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1348237801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26382,7 +26382,7 @@ PrefabInstance:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3003380487037874556, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -27187,7 +27187,7 @@ PrefabInstance:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3003380487037874556, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -33054,7 +33054,7 @@ PrefabInstance:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3003380487037874556, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
