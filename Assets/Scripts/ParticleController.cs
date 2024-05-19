@@ -7,10 +7,10 @@ public class ParticleController : MonoBehaviour
 {
 
     public float maximumSpeed = 50f;
-    public Color dirtColor = new Color(0.4f, 0.2f, 0.1f); // Marrom
-    public Color sandColor = new Color(0.96f, 0.87f, 0.70f); // Bege
-    public LayerMask whatIsGround;
-    public LayerMask whatIsDirt;
+    public Color groundColor = new Color(0.4f, 0.2f, 0.1f); // Marrom
+    public Color dirtColor = new Color(0.96f, 0.87f, 0.70f); // Bege
+    public LayerMask GroundLayer;
+    public LayerMask DirtLayer;
     public Transform rayPoint;
     public float rayLength = .5f;
     private float emissionRate;
@@ -35,8 +35,8 @@ public class ParticleController : MonoBehaviour
         float speed = carRigidbody.velocity.magnitude;
 
         // the car is on a terrain X if a ray, starting on groundRayPoint, going downward for its length, hits the terrain
-        bool isOnGround = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, whatIsGround);
-        bool isOnDirt = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, whatIsDirt);
+        bool isOnGround = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, GroundLayer);
+        bool isOnDirt = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, DirtLayer);
 
         // add particle emission if car is moving and on ground
         if ((isOnGround || isOnDirt) && speed > 1)
@@ -46,9 +46,9 @@ public class ParticleController : MonoBehaviour
 
         // defines the color based on the terrain
         if (isOnGround)
-            SetParticleColor(dirtColor);
+            SetParticleColor(groundColor);
         else if (isOnDirt)
-            SetParticleColor(sandColor);
+            SetParticleColor(dirtColor);
 
         SetEmissionRate(emissionRate);
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public Rigidbody carRigidbody;
+    private Rigidbody carRigidbody;
 
     public float forwardAcceleration = 8f;
     public float reverseAcceleration = 4f;
@@ -19,14 +19,13 @@ public class CarController : MonoBehaviour
 
     private bool isOnGround, isOnDirt;
 
-    public LayerMask whatIsGround;
-    public LayerMask whatIsDirt;
-    public float groundRayLength = .5f;
-    public Transform groundRayPoint;
+    public LayerMask GroundLayer;
+    public LayerMask DirtLayer;
+    public float groundRayLength = 1f;
+    private Transform groundRay;
 
     public Transform frontLeftWheel, frontRightWheel;
     public float maxTurnWheel = 25f;
-    public float maxEmission = 25f;
 
 
     public void SetFrontLeftWheel(Transform frontLeftWheel)
@@ -42,11 +41,32 @@ public class CarController : MonoBehaviour
     {
         return this.carRigidbody;
     }
+    public void SetCarRigidbody(Rigidbody carRigidbody)
+    {
+        this.carRigidbody = carRigidbody;
+        carRigidbody.name = this.name + " Rigidbody";
+        carRigidbody.transform.parent = null;
+    }
 
     void Start()
     {
         // prevent "double-movement" of sphere and car (parent)
-        carRigidbody.transform.parent = null;
+        InitializeGroundRayTransform();
+    }
+
+    private void InitializeGroundRayTransform()
+    {
+        // Criar um novo GameObject
+        GameObject groundRayObj = new GameObject("Car RayPoint");
+        groundRayObj.transform.parent = transform;
+
+        // Acessar o Transform do GameObject
+        Transform groundRay = groundRayObj.transform;
+
+        // Inicializar a posição, rotação e escala
+        groundRay.SetLocalPositionAndRotation(new Vector3(0, -0.4f, 0), Quaternion.identity);
+
+        this.groundRay = groundRay;
     }
 
     void Update()
@@ -90,8 +110,8 @@ public class CarController : MonoBehaviour
         RaycastHit hit, hitGround, hitDirt;
 
         // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
-        isOnGround = Physics.Raycast(groundRayPoint.position, -transform.up, out hitGround, groundRayLength, whatIsGround);
-        isOnDirt = Physics.Raycast(groundRayPoint.position, -transform.up, out hitDirt, groundRayLength, whatIsDirt);
+        isOnGround = Physics.Raycast(groundRay.position, -transform.up, out hitGround, groundRayLength, GroundLayer);
+        isOnDirt = Physics.Raycast(groundRay.position, -transform.up, out hitDirt, groundRayLength, DirtLayer);
 
         if (isOnGround || isOnDirt)
         {

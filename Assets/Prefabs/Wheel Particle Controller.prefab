@@ -47,12 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSpeed: 50
-  dirtColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
-  sandColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
-  whatIsGround:
+  dirtColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
+  groundColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
+  GroundLayer:
     serializedVersion: 2
     m_Bits: 256
-  whatIsDirt:
+  DirtLayer:
     serializedVersion: 2
     m_Bits: 1024
   rayPoint: {fileID: 2953563905588795249}
