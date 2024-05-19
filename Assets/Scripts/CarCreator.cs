@@ -16,7 +16,7 @@ public class CarCreator : MonoBehaviour
 
         // instanciates the selected car
         GameObject carInstance = Instantiate(selectedCarPrefab, transform);
-        carInstance.transform.localPosition = new Vector3(0f, -0.45f, 0f);
+        carInstance.transform.localPosition = new Vector3(0f, -1.0f, 0f);
         carInstance.name = "CarModel";
 
         carController = this.GetComponent<CarController>();
