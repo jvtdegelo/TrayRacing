@@ -669,14 +669,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSpeed: 50
+  dirtColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
+  sandColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   whatIsDirt:
     serializedVersion: 2
     m_Bits: 1024
-  groundRayLength: 0.5
-  groundRayPoint: {fileID: 1438577619}
+  rayPoint: {fileID: 1438577619}
+  rayLength: 0.5
   maxEmission: 25
   particle: {fileID: 744788071}
   carRigidbody: {fileID: 1733874357}
@@ -6385,14 +6387,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSpeed: 50
+  dirtColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
+  sandColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   whatIsDirt:
     serializedVersion: 2
     m_Bits: 1024
-  groundRayLength: 0.5
-  groundRayPoint: {fileID: 1437898337}
+  rayPoint: {fileID: 1437898337}
+  rayLength: 0.5
   maxEmission: 25
   particle: {fileID: 932673545}
   carRigidbody: {fileID: 1733874357}
@@ -12147,12 +12151,6 @@ CanvasRenderer:
 --- !u!4 &840498828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 025590a762a89824abe811efd090aea4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1225964877}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &860474252 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5228416442750742398, guid: 025590a762a89824abe811efd090aea4,
     type: 3}
   m_PrefabInstance: {fileID: 1225964877}
   m_PrefabAsset: {fileID: 0}
@@ -24680,14 +24678,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSpeed: 50
+  dirtColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
+  sandColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   whatIsDirt:
     serializedVersion: 2
     m_Bits: 1024
-  groundRayLength: 0.5
-  groundRayPoint: {fileID: 1544617643}
+  rayPoint: {fileID: 1544617643}
+  rayLength: 0.5
   maxEmission: 25
   particle: {fileID: 1332825475}
   carRigidbody: {fileID: 1733874357}
@@ -24842,12 +24842,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8affb25d5eb64c34f83131cb22784be6, type: 3}
---- !u!4 &1481762619 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4699993055987924672, guid: 025590a762a89824abe811efd090aea4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1225964877}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1494798251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047490472468968909, guid: 789215ef97b06864daee8aa91086df73,
@@ -25301,7 +25295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f9ddb389dc1cb44ba90e685ddb633a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphere: {fileID: 1733874357}
+  carRigidbody: {fileID: 1733874357}
   forwardAcceleration: 8
   reverseAcceleration: 4
   maximumSpeed: 50
@@ -25316,8 +25310,8 @@ MonoBehaviour:
     m_Bits: 1024
   groundRayLength: 0.5
   groundRayPoint: {fileID: 67226759}
-  leftFrontWheel: {fileID: 1481762619}
-  rightFrontWheel: {fileID: 860474252}
+  frontLeftWheel: {fileID: 0}
+  frontRightWheel: {fileID: 0}
   maxTurnWheel: 25
   maxEmission: 25
 --- !u!1001 &1584512017
@@ -25755,8 +25749,8 @@ MonoBehaviour:
   - {fileID: -927199367670048503, guid: 02647c95967804a4da5ff389d740df92, type: 3}
   - {fileID: -927199367670048503, guid: fe2af073f65781e41a0519b5b46ffae3, type: 3}
   - {fileID: -927199367670048503, guid: add8b8cded0ac164da0553b9490cd96b, type: 3}
-  spawnPoint: {fileID: 0}
-  particleSystemPrefab: {fileID: 468884407}
+  selectedCarPrefab: {fileID: 0}
+  particleControllerPrefab: {fileID: 0}
 --- !u!4 &1688604606
 Transform:
   m_ObjectHideFlags: 0
@@ -27768,14 +27762,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSpeed: 50
+  dirtColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
+  sandColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   whatIsDirt:
     serializedVersion: 2
     m_Bits: 1024
-  groundRayLength: 0.5
-  groundRayPoint: {fileID: 1180677855}
+  rayPoint: {fileID: 1180677855}
+  rayLength: 0.5
   maxEmission: 25
   particle: {fileID: 2140366047}
   carRigidbody: {fileID: 1733874357}
