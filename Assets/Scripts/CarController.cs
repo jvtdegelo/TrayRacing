@@ -110,9 +110,9 @@ public class CarController : MonoBehaviour
         else
         {
             // has less drag when on air
-            carRigidbody.drag = 0.1f;
+            carRigidbody.drag = 0.2f;
             // adds extra gravitational force for more realism
-            carRigidbody.AddForce(incrementGravityForce * 100f * Vector3.down);
+            carRigidbody.AddForce(incrementGravityForce * 120f * Vector3.down);
         }
     }
 }
