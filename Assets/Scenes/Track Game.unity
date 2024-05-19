@@ -590,7 +590,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1897377002}
     m_Modifications:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -620,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -1957,37 +1957,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 963194228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1151353509
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1151353510}
-  m_Layer: 0
-  m_Name: CarControlController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1151353510
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151353509}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 396.03244, y: 244.42494, z: 88.02895}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1216402555
 GameObject:
   m_ObjectHideFlags: 3
@@ -2106,6 +2075,12 @@ MonoBehaviour:
   checkpoint3Trig: {fileID: 1217319257}
   checkpoint4Trig: {fileID: 1698369272}
   lapTimeController: {fileID: 0}
+--- !u!4 &1217319266 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 403088333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1295694661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,74 +2178,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 666123315}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1321744617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1321744620}
-  - component: {fileID: 1321744619}
-  - component: {fileID: 1321744618}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1321744618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321744617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1321744619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321744617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1321744620
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321744617}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1348237800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,11 +2359,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startRaceTracks:
   - {fileID: 6137762519006516816, guid: a957548829444f843bda6f101ed35c9c, type: 3}
-  - {fileID: 6137762519006516816, guid: b1ed73c408e91f24da819c09a47bc727, type: 3}
   - {fileID: 6137762519006516816, guid: 95dfcb58c2de24042b59c708a940c9a0, type: 3}
   normalRaceTracks:
   - {fileID: 6137762519006516816, guid: bd367877fcf654547ab42a105e7cd251, type: 3}
   - {fileID: 6137762519006516816, guid: b72156e69ac20e6488f08ea12decfd62, type: 3}
+  - {fileID: 6137762519006516816, guid: 785267af46179b64ebe6a515b5ed29c4, type: 3}
 --- !u!1 &1523690899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,6 +2580,12 @@ MonoBehaviour:
   checkpoint3Trig: {fileID: 1217319257}
   checkpoint4Trig: {fileID: 1698369272}
   lapTimeController: {fileID: 0}
+--- !u!4 &1698369281 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1743056045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1700071288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,7 +2726,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1897377002}
     m_Modifications:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -2833,7 +2746,7 @@ PrefabInstance:
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.10000001
+      value: 0.10000002
       objectReference: {fileID: 0}
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -2848,7 +2761,7 @@ PrefabInstance:
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -2922,13 +2835,54 @@ MonoBehaviour:
   checkpoint3Trig: {fileID: 1217319257}
   checkpoint4Trig: {fileID: 1698369272}
   lapTimeController: {fileID: 0}
+--- !u!4 &1873673612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2014044666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1897377001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1897377002}
+  m_Layer: 0
+  m_Name: Checkpoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1897377002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897377001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6235781727930933104}
+  - {fileID: 1873673612}
+  - {fileID: 1217319266}
+  - {fileID: 1698369281}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2014044666
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1897377002}
     m_Modifications:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -2948,7 +2902,7 @@ PrefabInstance:
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.10000001
+      value: 0.10000002
       objectReference: {fileID: 0}
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -2963,7 +2917,7 @@ PrefabInstance:
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 150
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -3433,13 +3387,19 @@ MonoBehaviour:
   secondDisplay: {fileID: 2017290720}
   milliDisplay: {fileID: 1021958313}
   lapTimeController: {fileID: 785209375}
+--- !u!4 &6235781727930933104 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 8834642840449146557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8834642840449146557
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1897377002}
     m_Modifications:
     - target: {fileID: 2003995391998702078, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -3474,7 +3434,7 @@ PrefabInstance:
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 55
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 4803779933552792635, guid: 23adb362809004d4dac13f9293109dbd,
         type: 3}
@@ -3537,11 +3497,6 @@ SceneRoots:
   - {fileID: 1348237804}
   - {fileID: 666123315}
   - {fileID: 573573237}
-  - {fileID: 2014044666}
-  - {fileID: 403088333}
   - {fileID: 785209376}
-  - {fileID: 1151353510}
-  - {fileID: 1321744620}
   - {fileID: 1523690901}
-  - {fileID: 1743056045}
-  - {fileID: 8834642840449146557}
+  - {fileID: 1897377002}
