@@ -29,6 +29,8 @@ public class CarController : MonoBehaviour
 
     private int rewardPoints = 0;
 
+    private Vector3 lastCheckpointPosition = new Vector3(-76.72f, 1.2f, -47.5f); // initial position
+    private Quaternion lastCheckpointRotation = Quaternion.Euler(Vector3.zero); // initial position
 
     public void SetFrontLeftWheel(Transform frontLeftWheel)
     {
@@ -42,7 +44,7 @@ public class CarController : MonoBehaviour
     public void AddRewardPoints(int pointsToAdd)
     {
         this.rewardPoints += pointsToAdd;
-        Debug.Log(gameObject.name + " points: " + rewardPoints);
+        // Debug.Log(gameObject.name + " points: " + rewardPoints);
     }
 
     public Rigidbody GetCarRigidbody()
@@ -94,45 +96,19 @@ public class CarController : MonoBehaviour
             speedInput = verticalInput * reverseAcceleration * 1000f;
 
         if (isOnGround || isOnDirt)
-        {
-            // rotates, on the y axis, when is moving (verticalInput) and turning (horizontalInput)
-            // the signal for the rotation is giver both by the horizontalInput and the verticalInput
-            Vector3 rotationDiff = new Vector3(0f, horizontalInput * turnStrength * Time.deltaTime * verticalInput, 0f);
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationDiff);
-        }
+            RotateCar(horizontalInput, verticalInput);
 
 
         // Example of using the front wheels in the update method
         if (frontRightWheel != null && frontLeftWheel != null)
-        {
-            // get the front wheel angles
-            Vector3 leftWheelAngles = frontLeftWheel.localRotation.eulerAngles;
-            Vector3 rightWheelAngles = frontRightWheel.localRotation.eulerAngles;
-
-            // rotate them on the y axis based on the horizontal input
-            frontLeftWheel.localRotation = Quaternion.Euler(leftWheelAngles.x, (horizontalInput * maxTurnWheel) - 180, leftWheelAngles.z);
-            frontRightWheel.localRotation = Quaternion.Euler(rightWheelAngles.x, horizontalInput * maxTurnWheel, rightWheelAngles.z);
-        }
+            SteerWheels(horizontalInput);
 
         transform.position = carRigidbody.transform.position;
-    }
 
-    private void UpdateSpeedAcceleration()
-    {
-        if (isOnGround)
-        {
-            maximumSpeed = maxSpeedGround;
-            forwardAcceleration = accelerationGround;
-            reverseAcceleration = reverseAccelerationGround;
-        }
-        else if (isOnDirt)
-        {
-            maximumSpeed = maxSpeedDirt;
-            forwardAcceleration = accelerationDirt;
-            reverseAcceleration = reverseAccelerationDirt;
-        }
+        // returns to last checkpoint when R is pressed
+        if (Input.GetKeyDown(KeyCode.R))
+            ReturnToLastCheckpoint();
     }
-
     private void FixedUpdate()
     {
         RaycastHit hit, hitGround, hitDirt;
@@ -153,9 +129,7 @@ public class CarController : MonoBehaviour
             carRigidbody.drag = dragOnGround;
             // accelerates the car
             if (Mathf.Abs(speedInput) > 0)
-            {
                 carRigidbody.AddForce(transform.forward * speedInput);
-            }
         }
         else
         {
@@ -163,6 +137,55 @@ public class CarController : MonoBehaviour
             carRigidbody.drag = 0.2f;
             // adds extra gravitational force for more realism
             carRigidbody.AddForce(incrementGravityForce * 120f * Vector3.down);
+        }
+    }
+
+    public void SetLastCheckpointPosition(Vector3 position, Quaternion rotation)
+    {
+        lastCheckpointPosition = position + new Vector3(0f, 3f, 0f);
+        lastCheckpointRotation = rotation;
+    }
+
+    private void RotateCar(float horizontalInput, float verticalInput)
+    {
+        // rotates, on the y axis, when is moving (verticalInput) and turning (horizontalInput)
+        // the sign of the rotation is given both by the horizontalInput and the verticalInput
+        Vector3 rotationDiff = new Vector3(0f, horizontalInput * turnStrength * Time.deltaTime * verticalInput, 0f);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationDiff);
+    }
+
+    private void SteerWheels(float horizontalInput)
+    {
+        // get the front wheel angles
+        Vector3 leftWheelAngles = frontLeftWheel.localRotation.eulerAngles;
+        Vector3 rightWheelAngles = frontRightWheel.localRotation.eulerAngles;
+
+        // rotate them on the y axis based on the horizontal input
+        frontLeftWheel.localRotation = Quaternion.Euler(leftWheelAngles.x, (horizontalInput * maxTurnWheel) - 180, leftWheelAngles.z);
+        frontRightWheel.localRotation = Quaternion.Euler(rightWheelAngles.x, horizontalInput * maxTurnWheel, rightWheelAngles.z);
+    }
+
+    private void ReturnToLastCheckpoint()
+    {
+        carRigidbody.position = lastCheckpointPosition;
+        transform.rotation = lastCheckpointRotation;
+        carRigidbody.velocity = Vector3.zero;
+        carRigidbody.angularVelocity = Vector3.zero;
+    }
+
+    private void UpdateSpeedAcceleration()
+    {
+        if (isOnGround)
+        {
+            maximumSpeed = maxSpeedGround;
+            forwardAcceleration = accelerationGround;
+            reverseAcceleration = reverseAccelerationGround;
+        }
+        else if (isOnDirt)
+        {
+            maximumSpeed = maxSpeedDirt;
+            forwardAcceleration = accelerationDirt;
+            reverseAcceleration = reverseAccelerationDirt;
         }
     }
 }

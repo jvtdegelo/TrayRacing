@@ -18,7 +18,7 @@ public class CollisionLogger : MonoBehaviour
 
     private void LogCollision(GameObject collidedObject)
     {
-        Debug.Log(this.transform.parent.name + " collided with " + collidedObject.name);
+        // Debug.Log(this.transform.parent.name + " collided with " + collidedObject.name);
         // add collidedObject to set
         bool firstTimeEntering = collidedObjects.Add(collidedObject);
         CarPointer carPointer = collidedObject.GetComponent<CarPointer>();
