@@ -5,7 +5,6 @@ public class CarCreatorGiant : MonoBehaviour
     public GameObject[] carPrefabs;
     public GameObject selectedCarPrefab;
     public Rigidbody carRigidbodyPrefab;
-    public GameObject particleControllerPrefab;
     void Start()
     {
         // if has not selected a car prefab, selects it randomly
@@ -18,8 +17,19 @@ public class CarCreatorGiant : MonoBehaviour
         carInstanceGiant.transform.localPosition = new Vector3(0f, 50f, 0f);
         carInstanceGiant.transform.localScale = new Vector3(18f, 18f, 18f);
         carInstanceGiant.name = "CarModelGiantForMinimap";
+        removeShadows(carInstanceGiant);
     }
 
-    void Update() { }
+    private void removeShadows(GameObject car) {
+        Renderer[] renderers = car.GetComponentsInChildren<Renderer>();
+
+        // Iterate over all Renderer components
+        foreach (Renderer renderer in renderers)
+        {
+            Debug.Log("Renderer found in: " + renderer.gameObject.name);
+            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }       
+
+     }
 
 }

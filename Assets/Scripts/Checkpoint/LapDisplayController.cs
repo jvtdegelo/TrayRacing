@@ -18,8 +18,8 @@ public class LapDisplayController : MonoBehaviour
 
     public void UpdateTimer()
     {
-        Debug.Log(this.name + " updated");
-        Debug.Log(LapTimerController.minuteCount + "." + LapTimerController.secondCount + "." + LapTimerController.milliCount);
+        // Debug.Log(this.name + " updated");
+        // Debug.Log(LapTimerController.minuteCount + "." + LapTimerController.secondCount + "." + LapTimerController.milliCount);
         secondDisplayText.text =
             (LapTimerController.secondCount <= 9 ? "0" : "")
             + LapTimerController.secondCount + ".";
