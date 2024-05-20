@@ -59,6 +59,7 @@ public class CountdownController : MonoBehaviour
 
         lapTimer.SetActive(true);
 
+        // enables car movement
         foreach (CarController carController in carControllers)
         {
             carController.enabled = true;
