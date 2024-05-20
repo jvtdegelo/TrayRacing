@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(MeshCollider))]
 public class CollisionLogger : MonoBehaviour
 {
     // HashSet para armazenar os objetos que colidiram
