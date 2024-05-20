@@ -17,10 +17,11 @@ public class CarCreatorGiant : MonoBehaviour
         carInstanceGiant.transform.localPosition = new Vector3(0f, 50f, 0f);
         carInstanceGiant.transform.localScale = new Vector3(18f, 18f, 18f);
         carInstanceGiant.name = "CarModelGiantForMinimap";
-        removeShadows(carInstanceGiant);
+        RemoveShadows(carInstanceGiant);
     }
 
-    private void removeShadows(GameObject car) {
+    private void RemoveShadows(GameObject car)
+    {
         Renderer[] renderers = car.GetComponentsInChildren<Renderer>();
 
         // Iterate over all Renderer components
@@ -28,8 +29,8 @@ public class CarCreatorGiant : MonoBehaviour
         {
             Debug.Log("Renderer found in: " + renderer.gameObject.name);
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        }       
+        }
 
-     }
+    }
 
 }

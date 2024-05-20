@@ -27,6 +27,8 @@ public class CarController : MonoBehaviour
     public Transform frontLeftWheel, frontRightWheel;
     public float maxTurnWheel = 25f;
 
+    private int rewardPoints = 0;
+
 
     public void SetFrontLeftWheel(Transform frontLeftWheel)
     {
@@ -35,6 +37,12 @@ public class CarController : MonoBehaviour
     public void SetFrontRightWheel(Transform frontRightWheel)
     {
         this.frontRightWheel = frontRightWheel;
+    }
+
+    public void AddRewardPoints(int pointsToAdd)
+    {
+        this.rewardPoints += pointsToAdd;
+        Debug.Log(gameObject.name + " points: " + rewardPoints);
     }
 
     public Rigidbody GetCarRigidbody()
@@ -46,6 +54,10 @@ public class CarController : MonoBehaviour
         this.carRigidbody = carRigidbody;
         carRigidbody.name = this.name + " Rigidbody";
         carRigidbody.transform.parent = null;
+        // adds the carPointer to the rigidbody
+        CarPointer carPointer;
+        if (carRigidbody.TryGetComponent(out carPointer))
+            carPointer.SetCar(this.gameObject);
     }
 
     void Start()
