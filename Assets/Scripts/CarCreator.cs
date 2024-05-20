@@ -18,7 +18,6 @@ public class CarCreator : MonoBehaviour
         GameObject carInstance = Instantiate(selectedCarPrefab, transform);
         carInstance.transform.localPosition = new Vector3(0f, -1.0f, 0f);
         carInstance.name = "CarModel";
-
         carController = this.GetComponent<CarController>();
 
         if (carController != null)
