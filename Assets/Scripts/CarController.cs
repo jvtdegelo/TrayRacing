@@ -9,7 +9,7 @@ public class CarController : MonoBehaviour
 
     public float maximumSpeed = 50f, forwardAcceleration = 8f, reverseAcceleration = 4f;
     public float maxSpeedGround = 50f, accelerationGround = 8f, reverseAccelerationGround = 4f;
-    public float maxSpeedDirt   = 10f, accelerationDirt   = 2f, reverseAccelerationDirt   = 1f;
+    public float maxSpeedDirt = 10f, accelerationDirt = 2f, reverseAccelerationDirt = 1f;
     public float turnStrength = 180f;
     public float dragOnGround = 3f;
 
@@ -107,33 +107,30 @@ public class CarController : MonoBehaviour
 
     private void UpdateSpeedAcceleration()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(groundRay.position, -transform.up, out hit, groundRayLength))
+        if (isOnGround)
         {
-            if ((GroundLayer.value & (1 << hit.collider.gameObject.layer)) != 0)
-            {
-                maximumSpeed = maxSpeedGround;
-                forwardAcceleration = accelerationGround;
-                reverseAcceleration = reverseAccelerationGround;
-            }
-            else if((DirtLayer.value & (1 << hit.collider.gameObject.layer)) != 0)
-            {
-                maximumSpeed = maxSpeedDirt;
-                forwardAcceleration = accelerationDirt;
-                reverseAcceleration = reverseAccelerationDirt;
-            }
+            maximumSpeed = maxSpeedGround;
+            forwardAcceleration = accelerationGround;
+            reverseAcceleration = reverseAccelerationGround;
+        }
+        else if (isOnDirt)
+        {
+            maximumSpeed = maxSpeedDirt;
+            forwardAcceleration = accelerationDirt;
+            reverseAcceleration = reverseAccelerationDirt;
         }
     }
 
     private void FixedUpdate()
     {
-        UpdateSpeedAcceleration();
         RaycastHit hit, hitGround, hitDirt;
 
         // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
         isOnGround = Physics.Raycast(groundRay.position, -transform.up, out hitGround, groundRayLength, GroundLayer);
         isOnDirt = Physics.Raycast(groundRay.position, -transform.up, out hitDirt, groundRayLength, DirtLayer);
-        
+
+        UpdateSpeedAcceleration();
+
         if (isOnGround || isOnDirt)
         {
             hit = hitGround.collider != null ? hitGround : hitDirt;
