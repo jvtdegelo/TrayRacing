@@ -42,7 +42,7 @@ public class CarCreator : MonoBehaviour
     {
         GameObject carInstanceGiant = Instantiate(selectedCarPrefab, transform);
 
-        carInstanceGiant.transform.localPosition = new Vector3(0f, 50f, 0f);
+        carInstanceGiant.transform.localPosition = new Vector3(0f, 250f, 0f);
         carInstanceGiant.transform.localScale = new Vector3(18f, 18f, 18f);
         carInstanceGiant.name = "CarModelGiantForMinimap";
         RemoveShadows(carInstanceGiant);
