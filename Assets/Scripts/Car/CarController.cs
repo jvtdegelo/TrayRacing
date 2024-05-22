@@ -7,15 +7,14 @@ public class CarController : MonoBehaviour
 {
     private Rigidbody carRigidbody;
 
-    public float maximumSpeed = 50f, forwardAcceleration = 8f, reverseAcceleration = 4f;
-    public float maxSpeedGround = 50f, accelerationGround = 8f, reverseAccelerationGround = 4f;
+    public float maximumSpeed = 50f, forwardAcceleration = 7f, reverseAcceleration = 4f;
+    public float maxSpeedGround = 50f, accelerationGround = 7f, reverseAccelerationGround = 4f;
     public float maxSpeedDirt = 10f, accelerationDirt = 4f, reverseAccelerationDirt = 2f;
     public float turnStrength = 180f;
     public float dragOnGround = 3f;
-
     public float incrementGravityForce = 10f;
 
-    private float speedInput;
+    public float speedInput;
 
     private bool isOnGround, isOnDirt;
 
@@ -91,7 +90,7 @@ public class CarController : MonoBehaviour
 
         // accelerates or reverses based on verticalInput
         if (verticalInput > 0)
-            speedInput = verticalInput * forwardAcceleration * 1000f;
+            speedInput = verticalInput * forwardAcceleration * 1000f;        
         else
             speedInput = verticalInput * reverseAcceleration * 1000f;
 
