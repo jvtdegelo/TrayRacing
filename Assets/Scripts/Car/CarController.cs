@@ -26,30 +26,21 @@ public class CarController : MonoBehaviour
     public Transform frontLeftWheel, frontRightWheel;
     public float maxTurnWheel = 25f;
 
-    private int rewardPoints = 0;
+    private float rewardPoints = 0;
 
     private Vector3 lastCheckpointPosition = new Vector3(-76.72f, 1.2f, -47.5f); // initial position
     private Quaternion lastCheckpointRotation = Quaternion.Euler(Vector3.zero); // initial position
 
-    public void SetFrontLeftWheel(Transform frontLeftWheel)
-    {
-        this.frontLeftWheel = frontLeftWheel;
-    }
-    public void SetFrontRightWheel(Transform frontRightWheel)
-    {
-        this.frontRightWheel = frontRightWheel;
-    }
+    public void SetFrontLeftWheel(Transform frontLeftWheel) { this.frontLeftWheel = frontLeftWheel; }
+    public void SetFrontRightWheel(Transform frontRightWheel) { this.frontRightWheel = frontRightWheel; }
 
-    public void AddRewardPoints(int pointsToAdd)
+    public void AddRewardPoints(float pointsToAdd)
     {
         this.rewardPoints += pointsToAdd;
-        // Debug.Log(gameObject.name + " points: " + rewardPoints);
+        Debug.Log(gameObject.name + " points: " + rewardPoints);
     }
 
-    public Rigidbody GetCarRigidbody()
-    {
-        return this.carRigidbody;
-    }
+    public Rigidbody GetCarRigidbody() { return this.carRigidbody; }
     public void SetCarRigidbody(Rigidbody carRigidbody)
     {
         this.carRigidbody = carRigidbody;
@@ -63,7 +54,6 @@ public class CarController : MonoBehaviour
 
     void Start()
     {
-        // prevent "double-movement" of sphere and car (parent)
         InitializeGroundRayTransform();
     }
 
@@ -90,7 +80,7 @@ public class CarController : MonoBehaviour
 
         // accelerates or reverses based on verticalInput
         if (verticalInput > 0)
-            speedInput = verticalInput * forwardAcceleration * 1000f;        
+            speedInput = verticalInput * forwardAcceleration * 1000f;
         else
             speedInput = verticalInput * reverseAcceleration * 1000f;
 

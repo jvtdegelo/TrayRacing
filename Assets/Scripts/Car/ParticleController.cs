@@ -29,19 +29,18 @@ public class ParticleController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit hit;
         emissionRate = 0;
 
         float speed = carRigidbody.velocity.magnitude;
 
         // the car is on a terrain X if a ray, starting on groundRayPoint, going downward for its length, hits the terrain
-        bool isOnGround = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, GroundLayer);
-        bool isOnDirt = Physics.Raycast(rayPoint.position, -transform.up, out hit, rayLength, DirtLayer);
+        bool isOnGround = Physics.Raycast(rayPoint.position, -transform.up, out _, rayLength, GroundLayer);
+        bool isOnDirt = Physics.Raycast(rayPoint.position, -transform.up, out _, rayLength, DirtLayer);
 
         // add particle emission if car is moving and on ground
         if ((isOnGround || isOnDirt) && speed > 1)
         {
-            emissionRate = Helpers.Map(speed, 0, maximumSpeed, 0, maxEmission);
+            emissionRate = Utils.MapRange(speed, 0, maximumSpeed, 0, maxEmission);
         }
 
         // defines the color based on the terrain
