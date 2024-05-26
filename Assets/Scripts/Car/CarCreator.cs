@@ -8,8 +8,6 @@ public class CarCreator : MonoBehaviour
     public GameObject particleControllerPrefab;
     private CarController carController;
 
-    public AudioSource audioSource;
-
     void Start()
     {
         // if has not selected a car prefab, selects it randomly
@@ -31,8 +29,10 @@ public class CarCreator : MonoBehaviour
         carInstance.name = "CarModel";
 
         if (TryGetComponent(out carController))
+        {
             carController.SetCarRigidbody(Instantiate(carRigidbodyPrefab, transform));
-
+            carController.SetCarModel(carInstance);
+        }
         AddParticleControllerToWheels(carInstance);
     }
 

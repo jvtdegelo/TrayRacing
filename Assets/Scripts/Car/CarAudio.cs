@@ -27,11 +27,8 @@ public class CarAudio : MonoBehaviour
         float pitch = Utils.MapRange(speed, minSpeed, maxSpeed, minPitch, maxPitch);
         // Debug.Log(speed + "\t" + pitch);
         engine.pitch = pitch;
-        if (Input.GetKey(KeyCode.Space))
-        {
-            honk.Play();
-            // TODO: tocar bozina?
-        }
+        PlayHorn();
+
         // TODO: alterar vromm (car engine) para que o som seja constante, de modo que o pitch seja bom
         // TODO: se o carro estiver parado e ele acelerar faz som do pneu coisando (pegar velocidade pelo rigidbody)
         // TODO: se o carController estiver desativado (inicio da corrida) e input vertical, fazer o som do motor
@@ -45,5 +42,20 @@ public class CarAudio : MonoBehaviour
             return;
         }
         engine.pitch = minPitch;
+    }
+
+    private void PlayHorn()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!honk.isPlaying)
+                honk.Play();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if (honk.isPlaying)
+                honk.Stop();
+        }
     }
 }

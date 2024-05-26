@@ -7,14 +7,13 @@ public class ParticleController : MonoBehaviour
 {
 
     public float maximumSpeed = 50f;
-    public Color groundColor = new Color(0.4f, 0.2f, 0.1f); // Marrom
-    public Color dirtColor = new Color(0.96f, 0.87f, 0.70f); // Bege
-    public LayerMask GroundLayer;
-    public LayerMask DirtLayer;
+    public Color
+        groundColor = new Color(0.4f, 0.2f, 0.1f), // Marrom
+        dirtColor = new Color(0.96f, 0.87f, 0.70f); // Bege
+    public LayerMask GroundLayer, DirtLayer;
     public Transform rayPoint;
     public float rayLength = .5f;
-    private float emissionRate;
-    public float maxEmission = 25f;
+    private float emissionRate, maxEmission = 25f;
     public ParticleSystem particle;
     public Rigidbody carRigidbody;
 

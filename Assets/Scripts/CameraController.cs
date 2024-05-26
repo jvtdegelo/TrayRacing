@@ -1,16 +1,25 @@
 using Cinemachine;
 using UnityEngine;
 
+enum CameraMode
+{
+    Virtual,
+    Fixed
+}
+
 public class CameraSwitcher : MonoBehaviour
 {
-    private int currentFixedCameraIndex = 0;
-    private int currentVirtualCameraIndex = 0;
+    private int
+        currentFixedCameraIndex = 0,
+        currentVirtualCameraIndex = 0;
     public Camera[] fixedCameras;
     public CinemachineVirtualCamera[] cinemachineCameras;
     public CinemachineBrain cinemachineBrain;
+    private CameraMode mode;
 
     void Start()
     {
+        mode = CameraMode.Virtual;
         // activate initial camera (first fixed in array)
         cinemachineBrain.gameObject.SetActive(true);
         UpdateVirtualCameras();
@@ -28,8 +37,11 @@ public class CameraSwitcher : MonoBehaviour
 
     private void SwitchFixedCamera()
     {
-        currentFixedCameraIndex = (currentFixedCameraIndex + 1) % fixedCameras.Length;
+        // increments if was not on the other mode
+        if (mode == CameraMode.Fixed)
+            currentFixedCameraIndex = (currentFixedCameraIndex + 1) % fixedCameras.Length;
         UpdateFixedCameras();
+        mode = CameraMode.Fixed;
     }
 
     private void UpdateFixedCameras()
@@ -44,8 +56,11 @@ public class CameraSwitcher : MonoBehaviour
     }
     private void SwitchVirtualCamera()
     {
-        currentVirtualCameraIndex = (currentVirtualCameraIndex + 1) % cinemachineCameras.Length;
+        // increments if was not on the other mode
+        if (mode == CameraMode.Virtual)
+            currentVirtualCameraIndex = (currentVirtualCameraIndex + 1) % cinemachineCameras.Length;
         UpdateVirtualCameras();
+        mode = CameraMode.Virtual;
     }
 
     private void UpdateVirtualCameras()
