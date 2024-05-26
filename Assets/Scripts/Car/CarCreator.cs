@@ -8,11 +8,6 @@ public class CarCreator : MonoBehaviour
     public GameObject particleControllerPrefab;
     private CarController carController;
 
-    private float minPitch = 0.18f;
-    private float maxPitch = 1.0f;
-    private float minSpeed = 0;
-    private float maxSpeed = 4000.0f;
-
     public AudioSource audioSource;
 
     void Start()
@@ -28,13 +23,6 @@ public class CarCreator : MonoBehaviour
         InstantiateMinimapCar();
     }
 
-    void Update() { 
-        float speed = Mathf.Abs(carController.speedInput);
-        float pitch = Utils.MapRange(speed, minSpeed, maxSpeed, minPitch, maxPitch);
-        audioSource.pitch = pitch;
-    }
-
-
     // instanciates the selected car
     private void InstantiateNormalCar()
     {
@@ -46,9 +34,6 @@ public class CarCreator : MonoBehaviour
             carController.SetCarRigidbody(Instantiate(carRigidbodyPrefab, transform));
 
         AddParticleControllerToWheels(carInstance);
-
-        // TODO: se der tempo refatorar aqui pra adicionar o audio em cada carInstance
-        AddAudioSource();
     }
 
     // instanciates the giant minimap car 
@@ -61,17 +46,6 @@ public class CarCreator : MonoBehaviour
         carInstanceGiant.name = "CarModelGiantForMinimap";
         RemoveShadows(carInstanceGiant);
     }
-
-    private void AddAudioSource()
-    {
-        if (audioSource == null)
-        {
-            Debug.LogError("Could not find AudioSource on Component " + this.name);
-            return;
-        }
-        audioSource.pitch = minPitch;
-    }
-
 
     private void AddParticleControllerToWheels(GameObject car)
     {

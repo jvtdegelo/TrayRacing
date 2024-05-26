@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4846777543167462780}
   - component: {fileID: 9031976545600009861}
-  - component: {fileID: 5660983708115915696}
+  - component: {fileID: 1465065712442981217}
   m_Layer: 9
   m_Name: Car Prefab
   m_TagString: Untagged
@@ -70,7 +70,8 @@ MonoBehaviour:
     type: 3}
   particleControllerPrefab: {fileID: 962835922484827205, guid: 58e561867dc608646a992a2d40f326ea,
     type: 3}
---- !u!114 &5660983708115915696
+  audioSource: {fileID: 0}
+--- !u!114 &1465065712442981217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,19 +83,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f9ddb389dc1cb44ba90e685ddb633a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardAcceleration: 8
-  reverseAcceleration: 4
   maximumSpeed: 50
+  forwardAcceleration: 7
+  reverseAcceleration: 4
+  maxSpeedGround: 50
+  accelerationGround: 7
+  reverseAccelerationGround: 4
+  maxSpeedDirt: 10
+  accelerationDirt: 4
+  reverseAccelerationDirt: 2
   turnStrength: 180
   dragOnGround: 3
   incrementGravityForce: 10
+  speedInput: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
   DirtLayer:
     serializedVersion: 2
     m_Bits: 1024
-  groundRayLength: 0.5
+  groundRayLength: 1
   frontLeftWheel: {fileID: 0}
   frontRightWheel: {fileID: 0}
   maxTurnWheel: 25

@@ -12,8 +12,8 @@ public class CameraSwitcher : MonoBehaviour
     void Start()
     {
         // activate initial camera (first fixed in array)
-        cinemachineBrain.gameObject.SetActive(false);
-        UpdateFixedCameras();
+        cinemachineBrain.gameObject.SetActive(true);
+        UpdateVirtualCameras();
     }
 
     void Update()

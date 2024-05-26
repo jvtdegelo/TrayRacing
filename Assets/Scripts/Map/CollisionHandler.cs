@@ -15,7 +15,9 @@ public class CollisionHandler : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         // Debug.Log(collider.gameObject.name + " triggered " + transform.parent.name);
-        AddPointsToCar(collider.gameObject, onTriggerPoints);
+        bool firstTimeEntering = collidedObjects.Add(collider.gameObject);
+        if (firstTimeEntering)
+            AddPointsToCar(collider.gameObject, onTriggerPoints);
     }
 
     // Chamado quando a colisão começa
@@ -30,9 +32,7 @@ public class CollisionHandler : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         // Debug.Log(collision.gameObject.name + " is still colliding with " + transform.parent.name);
-        bool firstTimeEntering = collidedObjects.Add(collision.gameObject);
-        if (firstTimeEntering)
-            AddPointsToCar(collision.gameObject, onCollisionStayPoints);
+        AddPointsToCar(collision.gameObject, onCollisionStayPoints);
     }
 
     private void AddPointsToCar(GameObject carRigidbody, float pointsToAdd)
