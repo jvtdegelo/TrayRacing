@@ -8,6 +8,7 @@ public class CarController : MonoBehaviour
     private Rigidbody carRigidbody;
     private GameObject carModel;
 
+    // TODO: maximumSpeed is not used
     public float maximumSpeed = 50f, forwardAcceleration = 7f, reverseAcceleration = 4f;
     public float maxSpeedGround = 50f, accelerationGround = 7f, reverseAccelerationGround = 4f;
     public float maxSpeedContact = 20f, accelerationContact = 4f, reverseAccelerationContact = 2f;
@@ -26,10 +27,12 @@ public class CarController : MonoBehaviour
 
     private Transform frontLeftWheel, frontRightWheel;
     public float maxTurnWheel = 25f;
-
     private float rewardPoints = 0;
 
-    private Vector3 lastCheckpointPosition = new Vector3(-76.72f, 1.2f, -47.5f); // initial position
+    private float verticalInput = 0f, horizontalInput = 0f;
+
+
+    private Vector3 lastCheckpointPosition;// new Vector3(-76.72f, 1.2f, -47.5f); // initial position
     private Quaternion lastCheckpointRotation = Quaternion.Euler(Vector3.zero); // initial position
 
     public void SetCarModel(GameObject carModel) { this.carModel = carModel; }
@@ -53,19 +56,24 @@ public class CarController : MonoBehaviour
         if (carRigidbody.TryGetComponent(out CarPointer carPointer))
             carPointer.SetCar(gameObject);
     }
+    public void SetInputs(float verticalInput = 0f, float horizontalInput = 0f)
+    {
+        this.verticalInput = verticalInput;
+        this.horizontalInput = horizontalInput;
+    }
 
     void Start()
     {
+        lastCheckpointPosition = transform.position;
         InitializeGroundRayTransform();
     }
 
     void Update()
     {
         speedInput = 0f;
-        float verticalInput = Input.GetAxis("Vertical");
-        float horizontalInput = Input.GetAxis("Horizontal");
 
         // accelerates or reverses based on verticalInput
+        // TODO: talvez trocar para que os inputs sejam sempre 0, 1, e -1, e fazer com que ele acelere suavemente por um slerp?
         if (verticalInput > 0)
             speedInput = verticalInput * forwardAcceleration * 1000f;
         else
@@ -76,10 +84,6 @@ public class CarController : MonoBehaviour
         SteerWheels(horizontalInput);
 
         transform.position = carRigidbody.transform.position;
-
-        // returns to last checkpoint when R is pressed
-        if (Input.GetKeyDown(KeyCode.R))
-            ReturnToLastCheckpoint();
     }
     private void FixedUpdate()
     {
@@ -160,7 +164,7 @@ public class CarController : MonoBehaviour
         lastCheckpointPosition = position + new Vector3(0f, 3f, 0f); // spawns on air
         lastCheckpointRotation = rotation;
     }
-    private void ReturnToLastCheckpoint()
+    public void ReturnToLastCheckpoint()
     {
         carRigidbody.position = lastCheckpointPosition;
         transform.rotation = lastCheckpointRotation;

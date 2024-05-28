@@ -35,6 +35,7 @@ public class CollisionHandler : MonoBehaviour
         AddPointsToCar(collision.gameObject, onCollisionStayPoints);
     }
 
+    // TODO: refactor to add points to car agent (when created)
     private void AddPointsToCar(GameObject carRigidbody, float pointsToAdd)
     {
         if (carRigidbody.TryGetComponent(out CarPointer carPointer))
