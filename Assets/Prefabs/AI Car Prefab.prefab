@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2872141712925967253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4846777543167462780}
+  - component: {fileID: 9031976545600009861}
+  - component: {fileID: 1465065712442981217}
+  m_Layer: 9
+  m_Name: AI Car Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4846777543167462780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872141712925967253}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -76.72, y: 0.65000004, z: -43.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9031976545600009861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872141712925967253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e72b289d3ea1764fbdf41fe2f80fa3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carPrefabs:
+  - {fileID: -927199367670048503, guid: 07c5caee47242654d8b802ce88a59be6, type: 3}
+  - {fileID: -927199367670048503, guid: 025590a762a89824abe811efd090aea4, type: 3}
+  - {fileID: -927199367670048503, guid: 9321a9cd40803504c87b4ddcbab64612, type: 3}
+  - {fileID: -927199367670048503, guid: a697d73fa974a774cbfef384fd018521, type: 3}
+  - {fileID: -927199367670048503, guid: e3c22138040d2e447b82b7a9120cf15d, type: 3}
+  - {fileID: -927199367670048503, guid: a00ad1cba1c0c7f4497dd0601f7de5a9, type: 3}
+  - {fileID: -927199367670048503, guid: 89d09ccd03a07f145a7b6688d0c86d45, type: 3}
+  - {fileID: -927199367670048503, guid: a556db08b0eafb048a0d84b0ea0f2511, type: 3}
+  - {fileID: -927199367670048503, guid: 32e65779af43bcc43a6b78459e11af0c, type: 3}
+  - {fileID: -927199367670048503, guid: b471c25ca2598a14083cc13fdce2b8c0, type: 3}
+  - {fileID: -927199367670048503, guid: 16ad17164c49ed74e8acb7e543695d8f, type: 3}
+  - {fileID: -927199367670048503, guid: 1ed2b23eaf849164bba46f306654fffd, type: 3}
+  - {fileID: -927199367670048503, guid: 3d1c0bbaafd8fb1469ec4a20f946e704, type: 3}
+  - {fileID: -927199367670048503, guid: 1d9e2204d7af0af4eb88c8550b797ead, type: 3}
+  - {fileID: -927199367670048503, guid: ec34a3fb0ec02584d89dd469b46ebb95, type: 3}
+  - {fileID: -927199367670048503, guid: aa0861fd1c0a7924f8c8466d55e53d87, type: 3}
+  - {fileID: -927199367670048503, guid: 02647c95967804a4da5ff389d740df92, type: 3}
+  - {fileID: -927199367670048503, guid: fe2af073f65781e41a0519b5b46ffae3, type: 3}
+  - {fileID: -927199367670048503, guid: add8b8cded0ac164da0553b9490cd96b, type: 3}
+  selectedCarPrefab: {fileID: 0}
+  carRigidbodyPrefab: {fileID: 8792874488473979308, guid: 77d2af4f67c974c458db802b228950bb,
+    type: 3}
+  particleControllerPrefab: {fileID: 962835922484827205, guid: 58e561867dc608646a992a2d40f326ea,
+    type: 3}
+--- !u!114 &1465065712442981217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872141712925967253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f9ddb389dc1cb44ba90e685ddb633a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximumSpeed: 50
+  forwardAcceleration: 7
+  reverseAcceleration: 4
+  maxSpeedGround: 50
+  accelerationGround: 7
+  reverseAccelerationGround: 4
+  maxSpeedContact: 20
+  accelerationContact: 4
+  reverseAccelerationContact: 2
+  maxSpeedDirt: 10
+  accelerationDirt: 4
+  reverseAccelerationDirt: 2
+  turnStrength: 180
+  dragOnGround: 3
+  dragOnAir: 0.2
+  incrementGravityForce: 10
+  speedInput: 0
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  DirtLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  groundRayLength: 1
+  maxTurnWheel: 25

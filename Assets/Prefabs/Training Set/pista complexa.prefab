@@ -1,0 +1,337 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6137762519006516816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326181836683777095}
+  m_Layer: 0
+  m_Name: pista complexa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &326181836683777095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137762519006516816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25, y: 0, z: 75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 502463107022606087}
+  - {fileID: 7335945754569588477}
+  - {fileID: 6585181770027529064}
+  - {fileID: 5418079219020073728}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &180090308295056192
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 326181836683777095}
+    m_Modifications:
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137762519006516816, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+        type: 3}
+      propertyPath: m_Name
+      value: pista_fodastica2_gabriel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 5947946374498647159, guid: 3d1b5cc29ec017644bfc070abc53ae70, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d1b5cc29ec017644bfc070abc53ae70, type: 3}
+--- !u!4 &502463107022606087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 326181836683777095, guid: 3d1b5cc29ec017644bfc070abc53ae70,
+    type: 3}
+  m_PrefabInstance: {fileID: 180090308295056192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5743838783827517255
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 326181836683777095}
+    m_Modifications:
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137762519006516816, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+        type: 3}
+      propertyPath: m_Name
+      value: joao_pica_pra_caralho
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3375059571118065495, guid: 9d6474bd97c4d894c9e547d70dc41bc0, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d6474bd97c4d894c9e547d70dc41bc0, type: 3}
+--- !u!4 &5418079219020073728 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 326181836683777095, guid: 9d6474bd97c4d894c9e547d70dc41bc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5743838783827517255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6910095542729500463
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 326181836683777095}
+    m_Modifications:
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137762519006516816, guid: 1226ada4695ff9b4780f53416529260a,
+        type: 3}
+      propertyPath: m_Name
+      value: pista_fodastica_start_gabriel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 5947946374498647159, guid: 1226ada4695ff9b4780f53416529260a, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1226ada4695ff9b4780f53416529260a, type: 3}
+--- !u!4 &6585181770027529064 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 326181836683777095, guid: 1226ada4695ff9b4780f53416529260a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6910095542729500463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7009948946254473914
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 326181836683777095}
+    m_Modifications:
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137762519006516816, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_Name
+      value: pista_fodastica_mestre_gabriel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3444587228192616575, guid: 49797624c829be949ba9ebd164ccab38, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49797624c829be949ba9ebd164ccab38, type: 3}
+--- !u!4 &7335945754569588477 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
+    type: 3}
+  m_PrefabInstance: {fileID: 7009948946254473914}
+  m_PrefabAsset: {fileID: 0}
