@@ -268,6 +268,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 326181836683777095}
     m_Modifications:
+    - target: {fileID: 133949772900791256, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.63
+      objectReference: {fileID: 0}
     - target: {fileID: 326181836683777095, guid: 49797624c829be949ba9ebd164ccab38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -318,10 +323,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2257071053791397756, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661768770682191448, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102923161622015424, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197183482512869524, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779582592239748012, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.83
+      objectReference: {fileID: 0}
     - target: {fileID: 6137762519006516816, guid: 49797624c829be949ba9ebd164ccab38,
         type: 3}
       propertyPath: m_Name
       value: pista_fodastica_mestre_gabriel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277462269510693211, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770129573690220995, guid: 49797624c829be949ba9ebd164ccab38,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
