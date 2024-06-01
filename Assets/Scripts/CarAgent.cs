@@ -8,38 +8,87 @@ using Unity.MLAgents.Sensors;
 public class CarAgent : Agent
 {
 
-    [SerializeField] private Transform targetTransform;
+    private Transform spawnPoint;
+    private CarController carController;
 
+    private RayPerceptionSensorComponent3D rayPerception;
+
+    private void Awake()
+    {
+        carController = GetComponent<CarController>();
+        spawnPoint = transform;
+    }
+
+    public override void OnEpisodeBegin()
+    {
+        transform.position = spawnPoint.position;
+        transform.forward = spawnPoint.forward;
+        carController.StopCompletely();
+        // base.OnEpisodeBegin();
+    }
+
+    // TODO: aqui ele adicionava o Vector3.Dot entre o transform.forward e o nextCheckpoint, mas não temos nextCheckpoint
     public override void CollectObservations(VectorSensor sensor)
     {
+        // SE EU COLOCAR UM RAY POINT QUE SAI DO CARRO E VAI PARA FORWARD, E ELE BATER EM UM CHECKPOINT, E EU ALIMENTAR ISSO PARA A IA, TALVEZ FUNCIONE
         sensor.AddObservation(transform.position);
-        sensor.AddObservation(targetTransform.position);
+        // sensor.AddObservation(targetTransform.position);
 
         // base.CollectObservations(sensor);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        float moveX = actions.ContinuousActions[0];
-        float moveZ = actions.ContinuousActions[1];
+        // // TODO: verificar se é melhor discrete ou continuous
+        // float verticalInput = 0f;
+        // float horizontalInput = 0f;
 
-        float moveSpeed = 1f;
+        // switch (actions.DiscreteActions[0])
+        // {
+        //     case 0: verticalInput = 0f; break;
+        //     case 1: verticalInput = +1f; break;
+        //     case 2: verticalInput = -1f; break;
+        // }
 
-        transform.position += new Vector3(moveX, 0, moveZ) * Time.deltaTime * moveSpeed;
-        // Debug.Log(actions.ContinuousActions[0]);
-        // Debug.Log(actions.DiscreteActions[0] + " " + actions.DiscreteActions[1]);
+        // switch (actions.DiscreteActions[1])
+        // {
+        //     case 0: horizontalInput = 0f; break;
+        //     case 1: horizontalInput = +1f; break;
+        //     case 2: horizontalInput = -1f; break;
+        // }
+
+        // carController.SetInputs(verticalInput, horizontalInput);
+
+        // OR
+        // TODO: acho que esse faz mais sentido porque o do player é contínuo, e transita entre -1 e 1 a depender de quanto tempo está apertando
+
+        float verticalInput = actions.ContinuousActions[0];
+        float horizontalInput = actions.ContinuousActions[1];
+        carController.SetInputs(verticalInput, horizontalInput);
     }
 
-    public override void OnEpisodeBegin()
+    public override void Heuristic(in ActionBuffers actionsOut)
     {
-        transform.position = Vector3.zero;
-        // base.OnEpisodeBegin();
-    }
+        // base.Heuristic(actionsOut);
+        // int verticalAction = 0;
+        // if (Input.GetKeyDown(KeyCode.UpArrow)) verticalAction = 1;
+        // if (Input.GetKeyDown(KeyCode.DownArrow)) verticalAction = 2;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        SetReward(1f);
-        EndEpisode();
-    }
+        // int horizontalAction = 0;
+        // if (Input.GetKeyDown(KeyCode.RightArrow)) horizontalAction = 1;
+        // if (Input.GetKeyDown(KeyCode.LeftArrow)) horizontalAction = 2;
 
+        // ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+        // discreteActions[0] = verticalAction;
+        // discreteActions[1] = horizontalAction;
+
+        // OR
+
+        float verticalAction = Input.GetAxis("Vertical");
+        float horizontalAction = Input.GetAxis("Horizontal");
+
+        ActionSegment<float> continousActions = actionsOut.ContinuousActions;
+        continousActions[0] = verticalAction;
+        continousActions[1] = horizontalAction;
+    }
 }

@@ -40,6 +40,8 @@ public class CarController : MonoBehaviour
     public void SetFrontRightWheel(Transform frontRightWheel) { this.frontRightWheel = frontRightWheel; }
     public void SetIsOnContact(bool isOnContact) { this.isOnContact = isOnContact; }
 
+    // TODO: FUNCAO GET NEXT CHECKPOINT RAY POINTER QUE RETORNA O VECT3 DO TRANSFORM.FORWARD DE ONDE QUE ELE BATE O RAYPOINT, ACHO QUE SE PEGAR O NORMAL FUNCIONA
+
     public void AddRewardPoints(float pointsToAdd)
     {
         rewardPoints += pointsToAdd;
@@ -90,6 +92,8 @@ public class CarController : MonoBehaviour
         // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
         isOnGround = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitGround, groundRayLength, GroundLayer);
         isOnDirt = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitDirt, groundRayLength, DirtLayer);
+
+        // NEXT CHECKPOINT RAY CAST FORWARD AQUI
 
         UpdateSpeedAcceleration();
 
@@ -168,6 +172,11 @@ public class CarController : MonoBehaviour
     {
         carRigidbody.position = lastCheckpointPosition;
         transform.rotation = lastCheckpointRotation;
+        StopCompletely();
+    }
+
+    public void StopCompletely()
+    {
         carRigidbody.velocity = Vector3.zero;
         carRigidbody.angularVelocity = Vector3.zero;
     }

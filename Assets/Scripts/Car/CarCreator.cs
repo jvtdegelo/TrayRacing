@@ -87,7 +87,7 @@ public class CarCreator : MonoBehaviour
         // Iterate over all Renderer components
         foreach (Renderer renderer in renderers)
         {
-            Debug.Log("Renderer found in: " + renderer.gameObject.name);
+            // Debug.Log("Renderer found in: " + renderer.gameObject.name);
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }
     }

@@ -11,6 +11,11 @@ public class CollisionHandler : MonoBehaviour
         onCollisionEnterPoints = -0.5f,
         onCollisionStayPoints = -0.1f;
 
+    private void Awake()
+    {
+        Transform checkpoints = transform.Find("Checkpoints");
+    }
+
     // Método chamado ao colidir com outro objeto (Trigger)
     private void OnTriggerEnter(Collider collider)
     {
@@ -35,14 +40,13 @@ public class CollisionHandler : MonoBehaviour
         AddPointsToCar(collision.gameObject, onCollisionStayPoints);
     }
 
-    // TODO: refactor to add points to car agent (when created)
     private void AddPointsToCar(GameObject carRigidbody, float pointsToAdd)
     {
         if (carRigidbody.TryGetComponent(out CarPointer carPointer))
         {
-            if (carPointer.GetCar().TryGetComponent(out CarController carController))
+            if (carPointer.GetCar().TryGetComponent(out CarAgent carAgent))
             {
-                carController.AddRewardPoints(pointsToAdd);
+                carAgent.AddReward(pointsToAdd);
             }
         }
     }
