@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cb5acbd263f7147a4c4abc061fcd38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerPoints: 1
+  onTriggerPoints: 3
   onCollisionEnterPoints: -0.5
   onCollisionStayPoints: -0.1

@@ -137,6 +137,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Car Prefab (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -274,6 +279,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AI Car Prefab (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
@@ -475,6 +485,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 376654621}
     m_Modifications:
+    - target: {fileID: 1965267522768821355, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: checkpointContainer
+      value: 
+      objectReference: {fileID: 880443347}
     - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_Name
@@ -615,6 +630,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Car Prefab (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -682,6 +702,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AI Car Prefab (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
@@ -1149,6 +1174,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Car Prefab (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1216,6 +1246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AI Car Prefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
@@ -1319,6 +1354,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AI Car Prefab (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
@@ -1437,6 +1477,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pista complexa
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137762519006516816, guid: bc6028c42c76ac74aa05561092e7f8d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1807,6 +1852,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Car Prefab (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1874,6 +1924,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AI Car Prefab (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
@@ -1949,6 +2004,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Car Prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2016,6 +2076,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AI Car Prefab (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}

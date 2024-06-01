@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using System;
 
 public class CarAgent : Agent
 {
@@ -30,8 +31,17 @@ public class CarAgent : Agent
     // TODO: aqui ele adicionava o Vector3.Dot entre o transform.forward e o nextCheckpoint, mas não temos nextCheckpoint
     public override void CollectObservations(VectorSensor sensor)
     {
+        RaycastHit nextCheckpoint = carController.GetNextCheckpoint();
+        sensor.AddObservation(nextCheckpoint.distance);
+
+        float directionDot = Math.Abs(Vector3.Dot(transform.forward, nextCheckpoint.normal));
+        sensor.AddObservation(directionDot);
+        // Debug.Log(nextCheckpoint.distance);
+        // Debug.Log(nextCheckpoint.normal);
+        // Debug.Log(nextCheckpoint);
+        // Debug.Log("");
         // SE EU COLOCAR UM RAY POINT QUE SAI DO CARRO E VAI PARA FORWARD, E ELE BATER EM UM CHECKPOINT, E EU ALIMENTAR ISSO PARA A IA, TALVEZ FUNCIONE
-        sensor.AddObservation(transform.position);
+        // sensor.AddObservation(transform.position);
         // sensor.AddObservation(targetTransform.position);
 
         // base.CollectObservations(sensor);

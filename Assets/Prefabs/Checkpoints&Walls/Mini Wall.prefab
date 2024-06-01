@@ -120,5 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onTriggerPoints: 1
-  onCollisionEnterPoints: -0.5
-  onCollisionStayPoints: -0.1
+  onCollisionEnterPoints: -1
+  onCollisionStayPoints: -0.3
