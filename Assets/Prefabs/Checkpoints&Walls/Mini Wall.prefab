@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4491194338219907923}
   - component: {fileID: 2003995391998702078}
   - component: {fileID: 4126699825148203956}
-  - component: {fileID: 4651293076648061865}
+  - component: {fileID: -6267448051952399900}
   m_Layer: 12
   m_Name: Mini Wall
   m_TagString: Wall
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &4651293076648061865
+--- !u!114 &-6267448051952399900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,9 +116,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3003380487037874556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6cb5acbd263f7147a4c4abc061fcd38, type: 3}
+  m_Script: {fileID: 11500000, guid: 34023699b16ab2f43bff847b59f0b181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerPoints: 1
-  onCollisionEnterPoints: -1
-  onCollisionStayPoints: -0.3

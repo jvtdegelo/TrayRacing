@@ -55,7 +55,7 @@ public class MoveToGoalAgent : Agent
             floorMeshRenderer.material = winMaterial;
             EndEpisode();
         }
-        if (other.gameObject.TryGetComponent<Wall>(out Wall wall))
+        if (other.gameObject.TryGetComponent<Barrier>(out Barrier wall))
         {
             Debug.Log("Lost");
             SetReward(-1f);

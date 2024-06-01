@@ -31,8 +31,8 @@ public class CarController : MonoBehaviour
     private float verticalInput = 0f, horizontalInput = 0f;
 
 
-    private Vector3 lastCheckpointPosition;// new Vector3(-76.72f, 1.2f, -47.5f); // initial position
-    private Quaternion lastCheckpointRotation = Quaternion.Euler(Vector3.zero); // initial position
+    private Vector3 lastCheckpointPosition, spawnPosition;
+    private Quaternion lastCheckpointRotation, spawnRotation; // initial position
 
     private RaycastHit nextCheckpoint;
 
@@ -62,9 +62,20 @@ public class CarController : MonoBehaviour
     private void SetNextCheckpoint(RaycastHit nextCheckpoint) { this.nextCheckpoint = nextCheckpoint; }
     public RaycastHit GetNextCheckpoint() { return nextCheckpoint; }
 
+    public void ResetCheckpoints()
+    {
+        if (carRigidbody.TryGetComponent(out CarCollisionHandler handler))
+        {
+            handler.ResetCheckpoints();
+        }
+    }
+
     void Start()
     {
         lastCheckpointPosition = transform.position;
+        lastCheckpointRotation = transform.rotation;
+        spawnPosition = transform.position;
+        spawnRotation = transform.rotation;
         InitializeGroundRayTransform();
     }
 
@@ -172,6 +183,12 @@ public class CarController : MonoBehaviour
     {
         carRigidbody.position = lastCheckpointPosition;
         transform.rotation = lastCheckpointRotation;
+        StopCompletely();
+    }
+    public void ReturnToSpawn()
+    {
+        carRigidbody.position = spawnPosition;
+        transform.rotation = spawnRotation;
         StopCompletely();
     }
 

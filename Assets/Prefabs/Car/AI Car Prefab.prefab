@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4846777543167462780}
   - component: {fileID: 9031976545600009861}
   - component: {fileID: 1465065712442981217}
-  - component: {fileID: 1965267522768821355}
   - component: {fileID: -3125726666330797263}
   - component: {fileID: 180900990373552403}
   - component: {fileID: 6913585082736967958}
@@ -115,28 +114,6 @@ MonoBehaviour:
     m_Bits: 2048
   groundRayLength: 1
   maxTurnWheel: 25
---- !u!114 &1965267522768821355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2872141712925967253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7b81e89fe83ce4e8b7b74486568c4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkpointContainer: {fileID: 0}
-  Wall:
-    serializedVersion: 2
-    m_Bits: 4096
-  Checkpoint:
-    serializedVersion: 2
-    m_Bits: 2048
-  onTriggerPoints: 1
-  onCollisionEnterPoints: -0.5
-  onCollisionStayPoints: -0.1
 --- !u!114 &-3125726666330797263
 MonoBehaviour:
   m_ObjectHideFlags: 0

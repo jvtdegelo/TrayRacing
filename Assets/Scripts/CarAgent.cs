@@ -11,24 +11,21 @@ public class CarAgent : Agent
 
     private Transform spawnPoint;
     private CarController carController;
-
-    private RayPerceptionSensorComponent3D rayPerception;
+    private float reward = 0f;
 
     private void Awake()
     {
         carController = GetComponent<CarController>();
         spawnPoint = transform;
+        Debug.Log("initial: " + spawnPoint.position);
     }
 
     public override void OnEpisodeBegin()
     {
-        transform.position = spawnPoint.position;
-        transform.forward = spawnPoint.forward;
-        carController.StopCompletely();
-        // base.OnEpisodeBegin();
+        carController.ReturnToSpawn();
+        carController.ResetCheckpoints();
     }
 
-    // TODO: aqui ele adicionava o Vector3.Dot entre o transform.forward e o nextCheckpoint, mas não temos nextCheckpoint
     public override void CollectObservations(VectorSensor sensor)
     {
         RaycastHit nextCheckpoint = carController.GetNextCheckpoint();
@@ -36,15 +33,14 @@ public class CarAgent : Agent
 
         float directionDot = Math.Abs(Vector3.Dot(transform.forward, nextCheckpoint.normal));
         sensor.AddObservation(directionDot);
-        // Debug.Log(nextCheckpoint.distance);
-        // Debug.Log(nextCheckpoint.normal);
-        // Debug.Log(nextCheckpoint);
-        // Debug.Log("");
-        // SE EU COLOCAR UM RAY POINT QUE SAI DO CARRO E VAI PARA FORWARD, E ELE BATER EM UM CHECKPOINT, E EU ALIMENTAR ISSO PARA A IA, TALVEZ FUNCIONE
-        // sensor.AddObservation(transform.position);
-        // sensor.AddObservation(targetTransform.position);
+    }
 
-        // base.CollectObservations(sensor);
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+            EndEpisode();
+        if (Input.GetKeyDown(KeyCode.P))
+            Debug.Log(transform.name + " has " + reward + " points");
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -101,4 +97,6 @@ public class CarAgent : Agent
         continousActions[0] = verticalAction;
         continousActions[1] = horizontalAction;
     }
+
+    public void AddRewardDebug(float reward) { this.reward += reward; }
 }
