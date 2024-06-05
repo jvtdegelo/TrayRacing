@@ -9,15 +9,12 @@ using System;
 public class CarAgent : Agent
 {
 
-    private Transform spawnPoint;
     private CarController carController;
     private float reward = 0f;
 
     private void Awake()
     {
         carController = GetComponent<CarController>();
-        spawnPoint = transform;
-        Debug.Log("initial: " + spawnPoint.position);
     }
 
     public override void OnEpisodeBegin()

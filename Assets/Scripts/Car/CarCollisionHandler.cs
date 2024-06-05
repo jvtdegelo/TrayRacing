@@ -44,9 +44,10 @@ public class CarCollisionHandler : MonoBehaviour
     // Método chamado ao colidir com outro objeto (Trigger)
     private void OnTriggerEnter(Collider collider)
     {
+        // Debug.Log("triggered with " + collider.gameObject.name);
         if (collider.gameObject.TryGetComponent(out Checkpoint _))
         {
-            // Debug.Log(collider.gameObject.name + " triggered " + transform.name);
+            Debug.Log("triggered checkpoint");
             bool firstTimeEntering = collidedCheckpoints.Add(collider.gameObject);
             if (firstTimeEntering)
                 AddPointsToCar(onTriggerPoints);
@@ -56,9 +57,10 @@ public class CarCollisionHandler : MonoBehaviour
     // Chamado quando a colisão começa
     void OnCollisionEnter(Collision collision)
     {
+        // Debug.Log("collided with " + collision.gameObject.name);
         if (collision.gameObject.TryGetComponent(out Wall _))
         {
-            // Debug.Log(collision.gameObject.name + " collided with " + transform.name);
+            Debug.Log("collided on wall");
             AddPointsToCar(onCollisionEnterPoints);
         }
     }
@@ -67,9 +69,10 @@ public class CarCollisionHandler : MonoBehaviour
     // Chamado a cada frame enquanto a colisão continua
     void OnCollisionStay(Collision collision)
     {
+        // Debug.Log("is staying collided with " + collision.gameObject.name);
         if (collision.gameObject.TryGetComponent(out Wall _))
         {
-            // Debug.Log(collision.gameObject.name + " is still colliding with " + transform.name);
+            Debug.Log("is staying on wall");
             AddPointsToCar(onCollisionStayPoints);
         }
     }
@@ -85,17 +88,17 @@ public class CarCollisionHandler : MonoBehaviour
             return;
         }
 
-        // Debug.Log("getting new carPointer");
-        if (TryGetComponent(out carPointer))
-        {
-            // Debug.Log("getting new carAgent");
-            if (carPointer.GetCar().TryGetComponent(out carAgent))
-            {
-                // Debug.Log("adding to new carAgent");
-                carAgent.AddReward(pointsToAdd);
-                carAgent.AddRewardDebug(pointsToAdd);
-            }
-        }
+        // // Debug.Log("getting new carPointer");
+        // if (TryGetComponent(out carPointer))
+        // {
+        //     // Debug.Log("getting new carAgent");
+        //     if (carPointer.GetCar().TryGetComponent(out carAgent))
+        //     {
+        //         // Debug.Log("adding to new carAgent");
+        //         carAgent.AddReward(pointsToAdd);
+        //         carAgent.AddRewardDebug(pointsToAdd);
+        //     }
+        // }
     }
 
     // Método opcional para obter os objetos colididos
@@ -117,4 +120,42 @@ public class CarCollisionHandler : MonoBehaviour
     {
         return mask == 1 << layer; // binary shift
     }
+
+    bool HasPassedCheckpoint(Checkpoint checkpoint)
+    {
+        return collidedCheckpoints.Contains(checkpoint.gameObject);
+    }
+
+    public RaycastHit? GetNextCheckpoint(Vector3 direction)
+    {
+        Vector3 origin = transform.position;
+        float remainingDistance = 30f;
+
+        Checkpoint checkpoint;
+        RaycastHit hit;
+        // iterate through each checkpoint, getting the next one, until one has not yet been passed
+        do
+        {
+            if (Physics.Raycast(origin, direction, out hit, remainingDistance, checkpointLayer))
+            {
+                if (remainingDistance < 0) break;
+                checkpoint = hit.collider.GetComponent<Checkpoint>();
+                remainingDistance -= hit.distance;
+                // move a small distance forward to avoid hitting the same point again
+                origin = hit.transform.position + direction * 0.01f;
+                // get the direction of the next checkpoint
+                // the normalize and dot product is to get relative to the direction the car is facing
+                direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
+            }
+            else break;
+        }
+        while (HasPassedCheckpoint(checkpoint));
+
+        if (hit.collider == null || remainingDistance < 0)
+            return null;
+
+        return hit;
+
+    }
+
 }

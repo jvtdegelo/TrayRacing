@@ -1,0 +1,47 @@
+{
+    "CarDriver": {
+        "checkpoints": [
+            {
+                "steps": 499957,
+                "file_path": "results\\run2\\CarDriver\\CarDriver-499957.onnx",
+                "reward": 47.54999975182793,
+                "creation_time": 1717505539.7301621,
+                "auxillary_file_paths": [
+                    "results\\run2\\CarDriver\\CarDriver-499957.pt"
+                ]
+            },
+            {
+                "steps": 999989,
+                "file_path": "results\\run2\\CarDriver\\CarDriver-999989.onnx",
+                "reward": 46.57499977449576,
+                "creation_time": 1717506703.3124323,
+                "auxillary_file_paths": [
+                    "results\\run2\\CarDriver\\CarDriver-999989.pt"
+                ]
+            },
+            {
+                "steps": 1000385,
+                "file_path": "results\\run2\\CarDriver\\CarDriver-1000385.onnx",
+                "reward": 46.06666635022019,
+                "creation_time": 1717506703.4669032,
+                "auxillary_file_paths": [
+                    "results\\run2\\CarDriver\\CarDriver-1000385.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000385,
+            "file_path": "results\\run2\\CarDriver.onnx",
+            "reward": 46.06666635022019,
+            "creation_time": 1717506703.4669032,
+            "auxillary_file_paths": [
+                "results\\run2\\CarDriver\\CarDriver-1000385.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.1+cpu"
+    }
+}

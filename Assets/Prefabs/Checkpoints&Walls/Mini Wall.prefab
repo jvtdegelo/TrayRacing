@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4491194338219907923}
   - component: {fileID: 2003995391998702078}
   - component: {fileID: 4126699825148203956}
-  - component: {fileID: -6267448051952399900}
+  - component: {fileID: 889959670164017036}
   m_Layer: 12
   m_Name: Mini Wall
   m_TagString: Wall
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &-6267448051952399900
+--- !u!114 &889959670164017036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

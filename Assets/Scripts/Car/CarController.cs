@@ -32,16 +32,15 @@ public class CarController : MonoBehaviour
 
 
     private Vector3 lastCheckpointPosition, spawnPosition;
-    private Quaternion lastCheckpointRotation, spawnRotation; // initial position
+    private Quaternion lastCheckpointRotation, spawnRotation;
 
     private RaycastHit nextCheckpoint;
+    private CarCollisionHandler carCollisionHandler;
 
     public void SetCarModel(GameObject carModel) { this.carModel = carModel; }
     public void SetFrontLeftWheel(Transform frontLeftWheel) { this.frontLeftWheel = frontLeftWheel; }
     public void SetFrontRightWheel(Transform frontRightWheel) { this.frontRightWheel = frontRightWheel; }
     public void SetIsOnContact(bool isOnContact) { this.isOnContact = isOnContact; }
-
-    // TODO: FUNCAO GET NEXT CHECKPOINT RAY POINTER QUE RETORNA O VECT3 DO TRANSFORM.FORWARD DE ONDE QUE ELE BATE O RAYPOINT, ACHO QUE SE PEGAR O NORMAL FUNCIONA
 
     public Rigidbody GetCarRigidbody() { return carRigidbody; }
     public void SetCarRigidbody(Rigidbody carRigidbody)
@@ -52,6 +51,7 @@ public class CarController : MonoBehaviour
         // adds the carPointer to the rigidbody
         if (carRigidbody.TryGetComponent(out CarPointer carPointer))
             carPointer.SetCar(gameObject);
+        carRigidbody.TryGetComponent(out carCollisionHandler);
     }
     public void SetInputs(float verticalInput = 0f, float horizontalInput = 0f)
     {
@@ -64,10 +64,8 @@ public class CarController : MonoBehaviour
 
     public void ResetCheckpoints()
     {
-        if (carRigidbody.TryGetComponent(out CarCollisionHandler handler))
-        {
-            handler.ResetCheckpoints();
-        }
+        if (carRigidbody.TryGetComponent(out carCollisionHandler))
+            carCollisionHandler.ResetCheckpoints();
     }
 
     void Start()
@@ -102,9 +100,9 @@ public class CarController : MonoBehaviour
         isOnGround = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitGround, groundRayLength, GroundLayer);
         isOnDirt = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitDirt, groundRayLength, DirtLayer);
 
-        bool hitNextCheckpoint = Physics.Raycast(transform.position, transform.forward, out RaycastHit hitCheckpoint, 20f, CheckpointLayer);
-        if (hitNextCheckpoint)
-            SetNextCheckpoint(hitCheckpoint);
+        RaycastHit? nextCheckpoint = carCollisionHandler.GetNextCheckpoint(transform.forward);
+        if (nextCheckpoint != null)
+            SetNextCheckpoint((RaycastHit)nextCheckpoint);
 
         UpdateSpeedAcceleration();
 
