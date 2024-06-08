@@ -133,7 +133,18 @@ public class CarCollisionHandler : MonoBehaviour
 
         Checkpoint checkpoint;
         RaycastHit hit;
-        // iterate through each checkpoint, getting the next one, until one has not yet been passed
+        if (Physics.Raycast(origin, direction, out hit, remainingDistance, checkpointLayer))
+        {
+            // if (remainingDistance < 0) 
+            checkpoint = hit.collider.GetComponent<Checkpoint>();
+            remainingDistance -= hit.distance;
+            // move a small distance forward to avoid hitting the same point again
+            origin = hit.transform.position + direction * 0.01f;
+            // get the direction of the next checkpoint
+            // the normalize and dot product is to get relative to the direction the car is facing
+            direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
+        }
+
         do
         {
             if (Physics.Raycast(origin, direction, out hit, remainingDistance, checkpointLayer))
