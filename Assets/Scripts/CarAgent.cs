@@ -30,17 +30,18 @@ public class CarAgent : Agent
         AddRewardDebug(-0.05f);
 
         RaycastHit nextCheckpoint = carController.GetNextCheckpoint();
-
         float nextCheckpointDistance = Vector3.Distance(transform.position, nextCheckpoint.transform.position);
         sensor.AddObservation(nextCheckpointDistance);
 
-        float nextCheckpointDirectionDot = Math.Abs(Vector3.Dot(transform.forward, nextCheckpoint.normal));
+        Vector3 nextCheckpointDiretion = carController.GetNextCheckpointDirection();
+        float nextCheckpointDirectionDot = Vector3.Dot(transform.forward, nextCheckpointDiretion);
         sensor.AddObservation(nextCheckpointDirectionDot);
 
         Rigidbody rigidbody = carController.GetCarRigidbody();
-
         float velocity = rigidbody.velocity.magnitude;
         sensor.AddObservation(velocity);
+
+        Debug.Log(nextCheckpointDistance + " " + nextCheckpointDirectionDot + " " + velocity);
 
         // float acceleration = carController.acceleration;
         // sensor.AddObservation(acceleration);

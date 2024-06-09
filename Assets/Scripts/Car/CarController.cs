@@ -35,6 +35,7 @@ public class CarController : MonoBehaviour
     private Quaternion lastCheckpointRotation, spawnRotation;
 
     private RaycastHit nextCheckpoint;
+    private Vector3 nextCheckpointDirection;
     private CarCollisionHandler carCollisionHandler;
 
     public void SetCarModel(GameObject carModel) { this.carModel = carModel; }
@@ -52,6 +53,8 @@ public class CarController : MonoBehaviour
         if (carRigidbody.TryGetComponent(out CarPointer carPointer))
             carPointer.SetCar(gameObject);
         carRigidbody.TryGetComponent(out carCollisionHandler);
+        nextCheckpoint = carCollisionHandler.GetFirstCheckpoint(transform.forward);
+        nextCheckpointDirection = Vector3.Normalize(nextCheckpoint.normal * Vector3.Dot(nextCheckpoint.normal, nextCheckpointDirection));
     }
     public void SetInputs(float verticalInput = 0f, float horizontalInput = 0f)
     {
@@ -62,7 +65,7 @@ public class CarController : MonoBehaviour
 
     public Material selectedCheckpoint, unselectedCheckpoint;
 
-    private void SetNextCheckpoint(RaycastHit nextCheckpoint)
+    public void SetNextCheckpoint(RaycastHit nextCheckpoint)
     {
         MeshRenderer mesh;
         if (this.nextCheckpoint.collider != null)
@@ -75,11 +78,15 @@ public class CarController : MonoBehaviour
 
     }
     public RaycastHit GetNextCheckpoint() { return nextCheckpoint; }
+    public void SetNextCheckpointDirection(Vector3 direction) { nextCheckpointDirection = direction; }
+    public Vector3 GetNextCheckpointDirection() { return nextCheckpointDirection; }
+
 
     public void ResetCheckpoints()
     {
-        if (carRigidbody.TryGetComponent(out carCollisionHandler))
-            carCollisionHandler.ResetCheckpoints();
+        carCollisionHandler.ResetCheckpoints();
+        nextCheckpoint = carCollisionHandler.GetFirstCheckpoint(transform.forward);
+        nextCheckpointDirection = Vector3.Normalize(nextCheckpoint.normal * Vector3.Dot(nextCheckpoint.normal, nextCheckpointDirection));
     }
 
     void Start()
@@ -111,15 +118,12 @@ public class CarController : MonoBehaviour
 
         transform.position = carRigidbody.transform.position;
     }
+
     private void FixedUpdate()
     {
         // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
         isOnGround = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitGround, groundRayLength, GroundLayer);
         isOnDirt = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitDirt, groundRayLength, DirtLayer);
-
-        RaycastHit? nextCheckpoint = carCollisionHandler.GetNextCheckpoint(transform.forward);
-        if (nextCheckpoint != null)
-            SetNextCheckpoint((RaycastHit)nextCheckpoint);
 
         UpdateSpeedAcceleration();
 

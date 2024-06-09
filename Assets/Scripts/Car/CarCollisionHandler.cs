@@ -12,16 +12,23 @@ public class CarCollisionHandler : MonoBehaviour
     public LayerMask wallLayer, checkpointLayer;
     private CarAgent carAgent;
     private CarPointer carPointer;
+    private CarController carController;
 
     public float
         onTriggerPoints = 1,
         onCollisionEnterPoints = -0.5f,
         onCollisionStayPoints = -0.1f;
 
+    private RaycastHit nextCheckpoint;
+    private Vector3 nextCheckpointDirection;
+
     private void Start()
     {
         if (TryGetComponent(out carPointer))
+        {
             carPointer.GetCar().TryGetComponent(out carAgent);
+            carPointer.GetCar().TryGetComponent(out carController);
+        }
 
         GameObject map = GameObject.Find("Map");
         if (map != null)
@@ -47,10 +54,16 @@ public class CarCollisionHandler : MonoBehaviour
         // Debug.Log("triggered with " + collider.gameObject.name);
         if (collider.gameObject.TryGetComponent(out Checkpoint _))
         {
-            Debug.Log("triggered checkpoint");
+            // Debug.Log("triggered checkpoint");
             bool firstTimeEntering = collidedCheckpoints.Add(collider.gameObject);
             if (firstTimeEntering)
+            {
                 AddPointsToCar(onTriggerPoints);
+                FindNextCheckpoint();
+                carController.SetNextCheckpoint(nextCheckpoint);
+                carController.SetNextCheckpointDirection(nextCheckpointDirection);
+                // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection);
+            }
         }
     }
 
@@ -60,7 +73,7 @@ public class CarCollisionHandler : MonoBehaviour
         // Debug.Log("collided with " + collision.gameObject.name);
         if (collision.gameObject.TryGetComponent(out Wall _))
         {
-            Debug.Log("collided on wall");
+            // Debug.Log("collided on wall");
             AddPointsToCar(onCollisionEnterPoints);
         }
     }
@@ -72,7 +85,7 @@ public class CarCollisionHandler : MonoBehaviour
         // Debug.Log("is staying collided with " + collision.gameObject.name);
         if (collision.gameObject.TryGetComponent(out Wall _))
         {
-            Debug.Log("is staying on wall");
+            // Debug.Log("is staying on wall");
             AddPointsToCar(onCollisionStayPoints);
         }
     }
@@ -127,46 +140,60 @@ public class CarCollisionHandler : MonoBehaviour
         return collidedCheckpoints.Contains(checkpoint.gameObject);
     }
 
-    public RaycastHit? GetNextCheckpoint(Vector3 direction)
+    public RaycastHit GetFirstCheckpoint(Vector3 direction)
     {
         Vector3 origin = transform.position;
-        float remainingDistance = 20f;
+        nextCheckpointDirection = direction;
+        float remainingDistance = 30f;
 
-        Checkpoint checkpoint;
         RaycastHit hit;
-        if (Physics.Raycast(origin, direction, out hit, remainingDistance, checkpointLayer))
-        {
-            // if (remainingDistance < 0) 
-            checkpoint = hit.collider.GetComponent<Checkpoint>();
-            remainingDistance -= hit.distance;
-            // move a small distance forward to avoid hitting the same point again
-            origin = hit.transform.position + direction * 0.01f;
-            // get the direction of the next checkpoint
-            // the normalize and dot product is to get relative to the direction the car is facing
-            direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
-        }
 
+        int i = 0;
         do
         {
-            if (Physics.Raycast(origin, direction, out hit, remainingDistance, checkpointLayer))
+            if (Physics.Raycast(origin, nextCheckpointDirection, out hit, remainingDistance, checkpointLayer))
             {
+                // Debug.Log("has found nextCheckpoint on GetFirstCheckpoint");
+                nextCheckpoint = hit;
                 if (remainingDistance < 0) break;
-                checkpoint = hit.collider.GetComponent<Checkpoint>();
                 remainingDistance -= hit.distance;
                 // move a small distance forward to avoid hitting the same point again
-                origin = hit.transform.position + direction * 0.01f;
+                origin = hit.transform.position + nextCheckpointDirection * 0.1f;
                 // get the direction of the next checkpoint
                 // the normalize and dot product is to get relative to the direction the car is facing
-                direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
+                nextCheckpointDirection = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, nextCheckpointDirection));
             }
-            else break;
+            else Debug.LogWarning("has not found nextCheckpoint on GetFirstCheckpoint"); ;
+            i++;
+        } while (i < 3);
+
+
+        // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection);
+
+        return nextCheckpoint;
+    }
+    public RaycastHit GetNextCheckpoint() { return nextCheckpoint; }
+
+    private void FindNextCheckpoint()
+    {
+        Vector3 origin = nextCheckpoint.collider.transform.position + nextCheckpointDirection * 0.1f;
+        float distance = 30f;
+        RaycastHit hit;
+
+        // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection * 0.1f + " " + origin);
+
+        if (Physics.Raycast(origin, nextCheckpointDirection, out hit, distance, checkpointLayer))
+        {
+            // Debug.Log("has found nextCheckpoint on FindNextCheckpoint");
+            nextCheckpoint = hit;
+            // get the direction of the next checkpoint
+            // the normalize and dot product is to get relative to the direction the car is facing
+            nextCheckpointDirection = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, nextCheckpointDirection));
         }
-        while (HasPassedCheckpoint(checkpoint));
+        else Debug.LogWarning("has not found nextCheckpoint on FindNextCheckpoint");
 
-        if (hit.collider == null || remainingDistance < 0)
-            return null;
+        // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection);
 
-        return hit;
 
     }
 
