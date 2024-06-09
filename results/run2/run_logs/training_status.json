@@ -2,40 +2,31 @@
     "CarDriver": {
         "checkpoints": [
             {
-                "steps": 499957,
-                "file_path": "results\\run2\\CarDriver\\CarDriver-499957.onnx",
-                "reward": 47.54999975182793,
-                "creation_time": 1717505539.7301621,
+                "steps": 499968,
+                "file_path": "results\\run2\\CarDriver\\CarDriver-499968.onnx",
+                "reward": 44.21111252572801,
+                "creation_time": 1717852280.3197763,
                 "auxillary_file_paths": [
-                    "results\\run2\\CarDriver\\CarDriver-499957.pt"
+                    "results\\run2\\CarDriver\\CarDriver-499968.pt"
                 ]
             },
             {
-                "steps": 999989,
-                "file_path": "results\\run2\\CarDriver\\CarDriver-999989.onnx",
-                "reward": 46.57499977449576,
-                "creation_time": 1717506703.3124323,
+                "steps": 774768,
+                "file_path": "results\\run2\\CarDriver\\CarDriver-774768.onnx",
+                "reward": 43.28452470189049,
+                "creation_time": 1717852888.763139,
                 "auxillary_file_paths": [
-                    "results\\run2\\CarDriver\\CarDriver-999989.pt"
-                ]
-            },
-            {
-                "steps": 1000385,
-                "file_path": "results\\run2\\CarDriver\\CarDriver-1000385.onnx",
-                "reward": 46.06666635022019,
-                "creation_time": 1717506703.4669032,
-                "auxillary_file_paths": [
-                    "results\\run2\\CarDriver\\CarDriver-1000385.pt"
+                    "results\\run2\\CarDriver\\CarDriver-774768.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 1000385,
+            "steps": 774768,
             "file_path": "results\\run2\\CarDriver.onnx",
-            "reward": 46.06666635022019,
-            "creation_time": 1717506703.4669032,
+            "reward": 43.28452470189049,
+            "creation_time": 1717852888.763139,
             "auxillary_file_paths": [
-                "results\\run2\\CarDriver\\CarDriver-1000385.pt"
+                "results\\run2\\CarDriver\\CarDriver-774768.pt"
             ]
         }
     },

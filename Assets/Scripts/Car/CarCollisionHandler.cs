@@ -109,7 +109,8 @@ public class CarCollisionHandler : MonoBehaviour
 
     private void FindCheckpointsInSelfAndChildren(GameObject parent)
     {
-        if (IsOnLayer(parent.layer, checkpointLayer))
+        if (!parent.activeSelf) return;
+        if (parent.TryGetComponent<Checkpoint>(out _))
             allCheckpoints.Add(parent);
 
         foreach (Transform child in parent.transform)
@@ -129,7 +130,7 @@ public class CarCollisionHandler : MonoBehaviour
     public RaycastHit? GetNextCheckpoint(Vector3 direction)
     {
         Vector3 origin = transform.position;
-        float remainingDistance = 30f;
+        float remainingDistance = 20f;
 
         Checkpoint checkpoint;
         RaycastHit hit;

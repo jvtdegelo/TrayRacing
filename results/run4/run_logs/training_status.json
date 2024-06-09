@@ -2,40 +2,31 @@
     "CarDriver": {
         "checkpoints": [
             {
-                "steps": 499996,
-                "file_path": "results\\run4\\CarDriver\\CarDriver-499996.onnx",
-                "reward": 25.099995970726013,
-                "creation_time": 1717510833.1072948,
+                "steps": 499968,
+                "file_path": "results\\run4\\CarDriver\\CarDriver-499968.onnx",
+                "reward": -207.15835424760976,
+                "creation_time": 1717874900.4764357,
                 "auxillary_file_paths": [
-                    "results\\run4\\CarDriver\\CarDriver-499996.pt"
+                    "results\\run4\\CarDriver\\CarDriver-499968.pt"
                 ]
             },
             {
-                "steps": 999988,
-                "file_path": "results\\run4\\CarDriver\\CarDriver-999988.onnx",
+                "steps": 850176,
+                "file_path": "results\\run4\\CarDriver\\CarDriver-850176.onnx",
                 "reward": null,
-                "creation_time": 1717511845.3479888,
+                "creation_time": 1717876005.770841,
                 "auxillary_file_paths": [
-                    "results\\run4\\CarDriver\\CarDriver-999988.pt"
-                ]
-            },
-            {
-                "steps": 1000116,
-                "file_path": "results\\run4\\CarDriver\\CarDriver-1000116.onnx",
-                "reward": null,
-                "creation_time": 1717511845.4108644,
-                "auxillary_file_paths": [
-                    "results\\run4\\CarDriver\\CarDriver-1000116.pt"
+                    "results\\run4\\CarDriver\\CarDriver-850176.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 1000116,
+            "steps": 850176,
             "file_path": "results\\run4\\CarDriver.onnx",
             "reward": null,
-            "creation_time": 1717511845.4108644,
+            "creation_time": 1717876005.770841,
             "auxillary_file_paths": [
-                "results\\run4\\CarDriver\\CarDriver-1000116.pt"
+                "results\\run4\\CarDriver\\CarDriver-850176.pt"
             ]
         }
     },

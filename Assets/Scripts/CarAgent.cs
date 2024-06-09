@@ -26,14 +26,30 @@ public class CarAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        RaycastHit nextCheckpoint = carController.GetNextCheckpoint();
-        float distance = Vector3.Distance(transform.position, nextCheckpoint.transform.position);
-        Debug.Log("distance:" + distance);
-        sensor.AddObservation(distance);
+        AddReward(-0.05f);
+        AddRewardDebug(-0.05f);
 
-        float directionDot = Math.Abs(Vector3.Dot(transform.forward, nextCheckpoint.normal));
-        Debug.Log("directionDot:" + directionDot);
-        sensor.AddObservation(directionDot);
+        RaycastHit nextCheckpoint = carController.GetNextCheckpoint();
+
+        float nextCheckpointDistance = Vector3.Distance(transform.position, nextCheckpoint.transform.position);
+        sensor.AddObservation(nextCheckpointDistance);
+
+        float nextCheckpointDirectionDot = Math.Abs(Vector3.Dot(transform.forward, nextCheckpoint.normal));
+        sensor.AddObservation(nextCheckpointDirectionDot);
+
+        Rigidbody rigidbody = carController.GetCarRigidbody();
+
+        float velocity = rigidbody.velocity.magnitude;
+        sensor.AddObservation(velocity);
+
+        // float acceleration = carController.acceleration;
+        // sensor.AddObservation(acceleration);
+
+        // Debug.Log("nextCheckpointDistance:" + nextCheckpointDistance);
+        // Debug.Log("nextCheckpointDirectionDot:" + nextCheckpointDirectionDot);
+        // Debug.Log("velocity:" + velocity);
+        // // Debug.Log("acceleration:" + acceleration);
+
     }
 
     void Update()
@@ -54,7 +70,8 @@ public class CarAgent : Agent
         {
             case 0: verticalInput = 0f; break;
             case 1: verticalInput = +1f; break;
-            case 2: verticalInput = -1f; break;
+
+                // case 2: verticalInput = -1f; break;
         }
 
         switch (actions.DiscreteActions[1])
@@ -77,17 +94,17 @@ public class CarAgent : Agent
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         // base.Heuristic(actionsOut);
-        int verticalAction = 0;
-        if (Input.GetKeyDown(KeyCode.UpArrow)) verticalAction = 1;
-        if (Input.GetKeyDown(KeyCode.DownArrow)) verticalAction = 2;
+        // int verticalAction = 0;
+        // if (Input.GetKeyDown(KeyCode.UpArrow)) verticalAction = 1;
+        // if (Input.GetKeyDown(KeyCode.DownArrow)) verticalAction = 2;
 
-        int horizontalAction = 0;
-        if (Input.GetKeyDown(KeyCode.RightArrow)) horizontalAction = 1;
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) horizontalAction = 2;
+        // int horizontalAction = 0;
+        // if (Input.GetKeyDown(KeyCode.RightArrow)) horizontalAction = 1;
+        // if (Input.GetKeyDown(KeyCode.LeftArrow)) horizontalAction = 2;
 
-        ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
-        discreteActions[0] = verticalAction;
-        discreteActions[1] = horizontalAction;
+        // ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+        // discreteActions[0] = verticalAction;
+        // discreteActions[1] = horizontalAction;
 
         // OR
 
@@ -97,6 +114,18 @@ public class CarAgent : Agent
         // ActionSegment<float> continousActions = actionsOut.ContinuousActions;
         // continousActions[0] = verticalAction;
         // continousActions[1] = horizontalAction;
+
+        // OR
+
+        float verticalAction = Input.GetAxis("Vertical");
+        float horizontalAction = Input.GetAxis("Horizontal");
+        int verticalActionInt = verticalAction > 0 ? 1 : 0;
+        int horizontalActionInt = horizontalAction == 0 ? 0 : horizontalAction > 0 ? 1 : 2;
+        Debug.Log(verticalActionInt + " " + horizontalActionInt);
+        ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+        discreteActions[0] = verticalActionInt;
+        discreteActions[1] = horizontalActionInt;
+
     }
 
     public void AddRewardDebug(float reward) { this.reward += reward; }

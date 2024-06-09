@@ -33,12 +33,12 @@ behaviors:
           memory: null
           goal_conditioning_type: hyper
           deterministic: false
-    init_path: results\newrun2\CarDriver\checkpoint.pt
+    init_path: results\run5\CarDriver\checkpoint.pt
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 1000000
+    max_steps: 10000000
     time_horizon: 64
-    summary_freq: 50000
+    summary_freq: 10000
     threaded: false
     self_play: null
     behavioral_cloning: null
@@ -62,8 +62,8 @@ engine_settings:
   no_graphics: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: newrun3
-  initialize_from: newrun2
+  run_id: run6
+  initialize_from: run5
   load_model: false
   resume: false
   force: false

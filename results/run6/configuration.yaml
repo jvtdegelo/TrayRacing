@@ -3,12 +3,12 @@ behaviors:
   CarDriver:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 2048
-      buffer_size: 204800
-      learning_rate: 5.0e-05
+      batch_size: 1024
+      buffer_size: 10240
+      learning_rate: 0.0003
       beta: 0.005
       epsilon: 0.2
-      lambd: 0.93
+      lambd: 0.95
       num_epoch: 3
       learning_rate_schedule: linear
       beta_schedule: linear
@@ -36,9 +36,9 @@ behaviors:
     init_path: results\run5\CarDriver\checkpoint.pt
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 100000000
+    max_steps: 10000000
     time_horizon: 64
-    summary_freq: 50000
+    summary_freq: 10000
     threaded: false
     self_play: null
     behavioral_cloning: null

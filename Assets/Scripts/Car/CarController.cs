@@ -59,7 +59,21 @@ public class CarController : MonoBehaviour
         this.horizontalInput = horizontalInput;
     }
 
-    private void SetNextCheckpoint(RaycastHit nextCheckpoint) { this.nextCheckpoint = nextCheckpoint; }
+
+    public Material selectedCheckpoint, unselectedCheckpoint;
+
+    private void SetNextCheckpoint(RaycastHit nextCheckpoint)
+    {
+        MeshRenderer mesh;
+        if (this.nextCheckpoint.collider != null)
+            if (this.nextCheckpoint.collider.gameObject.TryGetComponent(out mesh))
+                mesh.material = unselectedCheckpoint;
+
+        this.nextCheckpoint = nextCheckpoint;
+        if (this.nextCheckpoint.collider.gameObject.TryGetComponent(out mesh))
+            mesh.material = selectedCheckpoint;
+
+    }
     public RaycastHit GetNextCheckpoint() { return nextCheckpoint; }
 
     public void ResetCheckpoints()
@@ -84,10 +98,13 @@ public class CarController : MonoBehaviour
         // accelerates or reverses based on verticalInput
         // TODO: talvez trocar para que os inputs sejam sempre 0, 1, e -1, e fazer com que ele acelere suavemente por um slerp?
         if (verticalInput > 0)
+        {
             speedInput = verticalInput * forwardAcceleration * 1000f;
+        }
         else
+        {
             speedInput = verticalInput * reverseAcceleration * 1000f;
-
+        }
         RotateCarOnSurface(horizontalInput, verticalInput);
 
         SteerWheels(horizontalInput);

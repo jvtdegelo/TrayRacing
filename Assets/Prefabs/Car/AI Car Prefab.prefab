@@ -114,6 +114,9 @@ MonoBehaviour:
     m_Bits: 2048
   groundRayLength: 1
   maxTurnWheel: 25
+  selectedCheckpoint: {fileID: 2100000, guid: 47db63ce3304dc942a237bd968e76bfa, type: 2}
+  unselectedCheckpoint: {fileID: 2100000, guid: 367f4211c45b41f4d9b676630fd63f33,
+    type: 2}
 --- !u!114 &-3125726666330797263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,12 +130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 2
+    VectorObservationSize: 3
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0300000003000000
-    VectorActionSize: 0300000003000000
+      BranchSizes: 0200000003000000
+    VectorActionSize: 0200000003000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -159,7 +162,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 1000
 --- !u!114 &6913585082736967958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +199,7 @@ MonoBehaviour:
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 4294966745
+    m_Bits: 4294964680
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
