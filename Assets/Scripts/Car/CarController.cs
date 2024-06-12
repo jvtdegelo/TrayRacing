@@ -32,16 +32,16 @@ public class CarController : MonoBehaviour
 
 
     private Vector3 lastCheckpointPosition, spawnPosition;
-    private Quaternion lastCheckpointRotation, spawnRotation; // initial position
+    private Quaternion lastCheckpointRotation, spawnRotation;
 
     private RaycastHit nextCheckpoint;
+    private Vector3 nextCheckpointDirection;
+    private CarCollisionHandler carCollisionHandler;
 
     public void SetCarModel(GameObject carModel) { this.carModel = carModel; }
     public void SetFrontLeftWheel(Transform frontLeftWheel) { this.frontLeftWheel = frontLeftWheel; }
     public void SetFrontRightWheel(Transform frontRightWheel) { this.frontRightWheel = frontRightWheel; }
     public void SetIsOnContact(bool isOnContact) { this.isOnContact = isOnContact; }
-
-    // TODO: FUNCAO GET NEXT CHECKPOINT RAY POINTER QUE RETORNA O VECT3 DO TRANSFORM.FORWARD DE ONDE QUE ELE BATE O RAYPOINT, ACHO QUE SE PEGAR O NORMAL FUNCIONA
 
     public Rigidbody GetCarRigidbody() { return carRigidbody; }
     public void SetCarRigidbody(Rigidbody carRigidbody)
@@ -52,6 +52,9 @@ public class CarController : MonoBehaviour
         // adds the carPointer to the rigidbody
         if (carRigidbody.TryGetComponent(out CarPointer carPointer))
             carPointer.SetCar(gameObject);
+        carRigidbody.TryGetComponent(out carCollisionHandler);
+        nextCheckpoint = carCollisionHandler.GetFirstCheckpoint(transform.forward);
+        nextCheckpointDirection = Vector3.Normalize(nextCheckpoint.normal * Vector3.Dot(nextCheckpoint.normal, nextCheckpointDirection));
     }
     public void SetInputs(float verticalInput = 0f, float horizontalInput = 0f)
     {
@@ -59,15 +62,36 @@ public class CarController : MonoBehaviour
         this.horizontalInput = horizontalInput;
     }
 
-    private void SetNextCheckpoint(RaycastHit nextCheckpoint) { this.nextCheckpoint = nextCheckpoint; }
-    public RaycastHit GetNextCheckpoint() { return nextCheckpoint; }
+
+    public Material selectedCheckpoint, unselectedCheckpoint;
+
+    public void SetNextCheckpoint(RaycastHit nextCheckpoint)
+    {
+        MeshRenderer mesh;
+        if (this.nextCheckpoint.collider != null)
+            if (this.nextCheckpoint.collider.gameObject.TryGetComponent(out mesh))
+                mesh.material = unselectedCheckpoint;
+
+        this.nextCheckpoint = nextCheckpoint;
+        if (this.nextCheckpoint.collider.gameObject.TryGetComponent(out mesh))
+            mesh.material = selectedCheckpoint;
+
+    }
+    public RaycastHit GetNextCheckpoint()
+    {
+        if (nextCheckpoint.collider == null)
+            nextCheckpoint = carCollisionHandler.GetFirstCheckpoint(transform.forward);
+        return nextCheckpoint;
+    }
+    public void SetNextCheckpointDirection(Vector3 direction) { nextCheckpointDirection = direction; }
+    public Vector3 GetNextCheckpointDirection() { return nextCheckpointDirection; }
+
 
     public void ResetCheckpoints()
     {
-        if (carRigidbody.TryGetComponent(out CarCollisionHandler handler))
-        {
-            handler.ResetCheckpoints();
-        }
+        carCollisionHandler.ResetCheckpoints();
+        nextCheckpoint = carCollisionHandler.GetFirstCheckpoint(transform.forward);
+        nextCheckpointDirection = Vector3.Normalize(nextCheckpoint.normal * Vector3.Dot(nextCheckpoint.normal, nextCheckpointDirection));
     }
 
     void Start()
@@ -86,25 +110,25 @@ public class CarController : MonoBehaviour
         // accelerates or reverses based on verticalInput
         // TODO: talvez trocar para que os inputs sejam sempre 0, 1, e -1, e fazer com que ele acelere suavemente por um slerp?
         if (verticalInput > 0)
+        {
             speedInput = verticalInput * forwardAcceleration * 1000f;
+        }
         else
+        {
             speedInput = verticalInput * reverseAcceleration * 1000f;
-
+        }
         RotateCarOnSurface(horizontalInput, verticalInput);
 
         SteerWheels(horizontalInput);
 
         transform.position = carRigidbody.transform.position;
     }
+
     private void FixedUpdate()
     {
         // the car is on the ground if a ray, starting on groundRayPoint, going downward for its length, hits the ground
         isOnGround = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitGround, groundRayLength, GroundLayer);
         isOnDirt = Physics.Raycast(groundRay.position, -transform.up, out RaycastHit hitDirt, groundRayLength, DirtLayer);
-
-        bool hitNextCheckpoint = Physics.Raycast(transform.position, transform.forward, out RaycastHit hitCheckpoint, 20f, CheckpointLayer);
-        if (hitNextCheckpoint)
-            SetNextCheckpoint(hitCheckpoint);
 
         UpdateSpeedAcceleration();
 

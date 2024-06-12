@@ -1,0 +1,56 @@
+{
+    "CarDriver": {
+        "checkpoints": [
+            {
+                "steps": 1999988,
+                "file_path": "results\\run3\\CarDriver\\CarDriver-1999988.onnx",
+                "reward": null,
+                "creation_time": 1717862586.53123,
+                "auxillary_file_paths": [
+                    "results\\run3\\CarDriver\\CarDriver-1999988.pt"
+                ]
+            },
+            {
+                "steps": 2499956,
+                "file_path": "results\\run3\\CarDriver\\CarDriver-2499956.onnx",
+                "reward": null,
+                "creation_time": 1717864064.6993766,
+                "auxillary_file_paths": [
+                    "results\\run3\\CarDriver\\CarDriver-2499956.pt"
+                ]
+            },
+            {
+                "steps": 2999988,
+                "file_path": "results\\run3\\CarDriver\\CarDriver-2999988.onnx",
+                "reward": null,
+                "creation_time": 1717865567.599925,
+                "auxillary_file_paths": [
+                    "results\\run3\\CarDriver\\CarDriver-2999988.pt"
+                ]
+            },
+            {
+                "steps": 3499956,
+                "file_path": "results\\run3\\CarDriver\\CarDriver-3499956.onnx",
+                "reward": null,
+                "creation_time": 1717867132.1141872,
+                "auxillary_file_paths": [
+                    "results\\run3\\CarDriver\\CarDriver-3499956.pt"
+                ]
+            },
+            {
+                "steps": 3999988,
+                "file_path": "results\\run3\\CarDriver\\CarDriver-3999988.onnx",
+                "reward": null,
+                "creation_time": 1717868704.3883262,
+                "auxillary_file_paths": [
+                    "results\\run3\\CarDriver\\CarDriver-3999988.pt"
+                ]
+            }
+        ]
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.2.1+cpu"
+    }
+}
