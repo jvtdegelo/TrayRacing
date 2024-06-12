@@ -59,7 +59,7 @@ public class CarCollisionHandler : MonoBehaviour
             if (firstTimeEntering)
             {
                 AddPointsToCar(onTriggerPoints);
-                FindNextCheckpoint();
+                FindNextCheckpoint(collider.gameObject.transform);
                 carController.SetNextCheckpoint(nextCheckpoint);
                 carController.SetNextCheckpointDirection(nextCheckpointDirection);
                 // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection);
@@ -144,56 +144,58 @@ public class CarCollisionHandler : MonoBehaviour
     {
         Vector3 origin = transform.position;
         nextCheckpointDirection = direction;
-        float remainingDistance = 30f;
 
-        RaycastHit hit;
-
+        float remainingDistance = 40f;
         int i = 0;
         do
         {
-            if (Physics.Raycast(origin, nextCheckpointDirection, out hit, remainingDistance, checkpointLayer))
+            // if finds a checkpoint, save it as nextCheckpoint
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, remainingDistance, checkpointLayer))
             {
-                // Debug.Log("has found nextCheckpoint on GetFirstCheckpoint");
-                nextCheckpoint = hit;
                 if (remainingDistance < 0) break;
                 remainingDistance -= hit.distance;
                 // move a small distance forward to avoid hitting the same point again
-                origin = hit.transform.position + nextCheckpointDirection * 0.1f;
+                origin = hit.transform.position + direction * 0.5f;
                 // get the direction of the next checkpoint
                 // the normalize and dot product is to get relative to the direction the car is facing
-                nextCheckpointDirection = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, nextCheckpointDirection));
+                direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
+
+                nextCheckpoint = hit;
+                nextCheckpointDirection = direction;
             }
             else Debug.LogWarning("has not found nextCheckpoint on GetFirstCheckpoint"); ;
             i++;
         } while (i < 3);
 
-
-        // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection);
-
         return nextCheckpoint;
     }
-    public RaycastHit GetNextCheckpoint() { return nextCheckpoint; }
 
-    private void FindNextCheckpoint()
+    private void FindNextCheckpoint(Transform triggeredCheckpoint)
     {
-        Vector3 origin = nextCheckpoint.collider.transform.position + nextCheckpointDirection * 0.1f;
-        float distance = 30f;
-        RaycastHit hit;
+        Vector3 origin = triggeredCheckpoint.position;
+        Vector3 forward = carPointer.GetCar().transform.forward;
+        Vector3 direction = Vector3.Normalize(triggeredCheckpoint.forward * Vector3.Dot(triggeredCheckpoint.forward, forward));
 
-        // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection * 0.1f + " " + origin);
-
-        if (Physics.Raycast(origin, nextCheckpointDirection, out hit, distance, checkpointLayer))
+        float remainingDistance = 40f;
+        int i = 0;
+        do
         {
-            // Debug.Log("has found nextCheckpoint on FindNextCheckpoint");
-            nextCheckpoint = hit;
-            // get the direction of the next checkpoint
-            // the normalize and dot product is to get relative to the direction the car is facing
-            nextCheckpointDirection = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, nextCheckpointDirection));
-        }
-        else Debug.LogWarning("has not found nextCheckpoint on FindNextCheckpoint");
+            // if finds a checkpoint, save it as nextCheckpoint
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, remainingDistance, checkpointLayer))
+            {
+                if (remainingDistance < 0) break;
+                remainingDistance -= hit.distance;
+                // move a small distance forward to avoid hitting the same point again
+                origin = hit.transform.position + direction * 0.5f;
+                // get the direction of the next checkpoint
+                // the normalize and dot product is to get relative to the direction the car is facing
+                direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
 
-        // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection);
-
+                nextCheckpoint = hit;
+                nextCheckpointDirection = direction;
+            }
+            i++;
+        } while (i < 5);
 
     }
 

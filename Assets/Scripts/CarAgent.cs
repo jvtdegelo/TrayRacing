@@ -41,7 +41,7 @@ public class CarAgent : Agent
         float velocity = rigidbody.velocity.magnitude;
         sensor.AddObservation(velocity);
 
-        Debug.Log(nextCheckpointDistance + " " + nextCheckpointDirectionDot + " " + velocity);
+        // Debug.Log(nextCheckpointDistance + " " + nextCheckpointDirectionDot);
 
         // float acceleration = carController.acceleration;
         // sensor.AddObservation(acceleration);

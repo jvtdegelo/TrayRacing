@@ -988,6 +988,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Car Prefab 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1107,7 +1112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534928458}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000009536743, y: 0.00007390165, z: -0.000046138477, w: 1}
+  m_LocalRotation: {x: -0.0000009536743, y: -0.00007390164, z: 0.000046138477, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1140,8 +1145,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596938183}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31085205, y: 0.000055898287, z: -0.000066825174, w: 0.95045835}
-  m_LocalPosition: {x: -0.0010977349, y: 15.910564, z: -17.360302}
+  m_LocalRotation: {x: 0.31085217, y: 0.000055898436, z: -0.00006682562, w: 0.9504583}
+  m_LocalPosition: {x: 1.4081061e-10, y: 15.910531, z: -17.360332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2117,7 +2122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27544883, y: 5.6554765e-12, z: -1.6204815e-12, w: 0.96131575}
+  m_LocalRotation: {x: 0.2754479, y: -0.0000837516, z: 0.00002399752, w: 0.96131605}
   m_LocalPosition: {x: -76.72, y: 3.51, z: -51.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3739,8 +3744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startRaceTracks:
-  - {fileID: 6137762519006516816, guid: a957548829444f843bda6f101ed35c9c, type: 3}
-  - {fileID: 6137762519006516816, guid: 95dfcb58c2de24042b59c708a940c9a0, type: 3}
+  - {fileID: 6137762519006516816, guid: 27e9ece02c70824408fb45f2e07fe51e, type: 3}
   normalRaceTracks:
   - {fileID: 6137762519006516816, guid: bd367877fcf654547ab42a105e7cd251, type: 3}
   - {fileID: 6137762519006516816, guid: b72156e69ac20e6488f08ea12decfd62, type: 3}
@@ -3783,6 +3787,12 @@ MonoBehaviour:
   - {fileID: 917731254}
   - {fileID: 767683821}
   - {fileID: 887761174}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1523690901
 Transform:
   m_ObjectHideFlags: 0
@@ -4818,6 +4828,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Car Prefab 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2872141712925967253, guid: 9292c4201700b464b9dc88e57e98ccb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4846777543167462780, guid: 9292c4201700b464b9dc88e57e98ccb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5374,9 +5389,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 880443348}
   - {fileID: 2115071971}
   - {fileID: 1712332958}
-  - {fileID: 880443348}
   - {fileID: 1523690901}
   - {fileID: 1348237804}
   - {fileID: 666123315}

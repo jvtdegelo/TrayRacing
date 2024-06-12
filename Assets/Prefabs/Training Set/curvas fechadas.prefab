@@ -46,7 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 326181836683777095}
   m_Layer: 0
-  m_Name: pista_fodastica_start_gabriel
+  m_Name: curvas fechadas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

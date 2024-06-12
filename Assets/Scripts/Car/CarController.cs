@@ -77,7 +77,12 @@ public class CarController : MonoBehaviour
             mesh.material = selectedCheckpoint;
 
     }
-    public RaycastHit GetNextCheckpoint() { return nextCheckpoint; }
+    public RaycastHit GetNextCheckpoint()
+    {
+        if (nextCheckpoint.collider == null)
+            nextCheckpoint = carCollisionHandler.GetFirstCheckpoint(transform.forward);
+        return nextCheckpoint;
+    }
     public void SetNextCheckpointDirection(Vector3 direction) { nextCheckpointDirection = direction; }
     public Vector3 GetNextCheckpointDirection() { return nextCheckpointDirection; }
 
