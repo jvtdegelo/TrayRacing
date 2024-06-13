@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.UIElements;
+using System.Collections;
 
 [RequireComponent(typeof(CarPointer))]
 public class CarCollisionHandler : MonoBehaviour
@@ -21,6 +20,9 @@ public class CarCollisionHandler : MonoBehaviour
 
     private RaycastHit nextCheckpoint;
     private Vector3 nextCheckpointDirection;
+    private Coroutine checkpointTimer;
+
+    private readonly float checkpointTimerSeconds = 3.0f;
 
     private void Start()
     {
@@ -58,11 +60,16 @@ public class CarCollisionHandler : MonoBehaviour
             bool firstTimeEntering = collidedCheckpoints.Add(collider.gameObject);
             if (firstTimeEntering)
             {
+                Transform colliderTransform = collider.gameObject.transform;
                 AddPointsToCar(onTriggerPoints);
-                FindNextCheckpoint(collider.gameObject.transform);
+                FindNextCheckpoint(colliderTransform);
+                // sets next checkpoint variables
                 carController.SetNextCheckpoint(nextCheckpoint);
                 carController.SetNextCheckpointDirection(nextCheckpointDirection);
-                // Debug.Log(nextCheckpoint.collider.transform.position + " " + nextCheckpointDirection);
+                // handle checkpoint return position
+                Vector3 direction = NormalizeVectorDirection(colliderTransform.forward, nextCheckpointDirection);
+                carController.SetCheckpointReturnPosition(colliderTransform.position, Quaternion.LookRotation(direction));
+                HandleCheckpointTimer();
             }
         }
     }
@@ -92,26 +99,40 @@ public class CarCollisionHandler : MonoBehaviour
 
     private void AddPointsToCar(float pointsToAdd)
     {
-        // Debug.Log("adding " + pointsToAdd + " to " + transform.name);
+        // Debug.Log("adding " + pointsToAdd + " to " + carAgent.gameObject.name);
         if (carAgent != null)
         {
-            // Debug.Log("adding to existing carAgent");
             carAgent.AddReward(pointsToAdd);
             carAgent.AddRewardDebug(pointsToAdd);
             return;
         }
+    }
 
-        // // Debug.Log("getting new carPointer");
-        // if (TryGetComponent(out carPointer))
-        // {
-        //     // Debug.Log("getting new carAgent");
-        //     if (carPointer.GetCar().TryGetComponent(out carAgent))
-        //     {
-        //         // Debug.Log("adding to new carAgent");
-        //         carAgent.AddReward(pointsToAdd);
-        //         carAgent.AddRewardDebug(pointsToAdd);
-        //     }
-        // }
+    private void HandleCheckpointTimer()
+    {
+        if (carAgent == null) return;
+
+        Debug.Log("initializing timer");
+        // Resets the timer if it has already started
+        if (checkpointTimer != null)
+            StopCoroutine(checkpointTimer);
+
+
+        // Initiate 5 second timer
+        checkpointTimer = StartCoroutine(CheckpointTimer());
+    }
+
+    private IEnumerator CheckpointTimer()
+    {
+        // Wait for 5 seconds
+        yield return new WaitForSeconds(checkpointTimerSeconds);
+        Debug.Log("checkpointTimer timeout, returning to last checkpoint");
+
+        carController.ReturnToLastCheckpoint();
+
+        // Resets checkpoint timer
+        StopCoroutine(checkpointTimer);
+        checkpointTimer = StartCoroutine(CheckpointTimer());
     }
 
     // Método opcional para obter os objetos colididos
@@ -140,6 +161,11 @@ public class CarCollisionHandler : MonoBehaviour
         return collidedCheckpoints.Contains(checkpoint.gameObject);
     }
 
+    private Vector3 NormalizeVectorDirection(Vector3 gameObjForward, Vector3 carForward)
+    {
+        return Vector3.Normalize(gameObjForward * Vector3.Dot(gameObjForward, carForward));
+    }
+
     public RaycastHit GetFirstCheckpoint(Vector3 direction)
     {
         Vector3 origin = transform.position;
@@ -158,7 +184,7 @@ public class CarCollisionHandler : MonoBehaviour
                 origin = hit.transform.position + direction * 0.5f;
                 // get the direction of the next checkpoint
                 // the normalize and dot product is to get relative to the direction the car is facing
-                direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
+                direction = NormalizeVectorDirection(hit.normal, direction);
 
                 nextCheckpoint = hit;
                 nextCheckpointDirection = direction;
@@ -174,7 +200,7 @@ public class CarCollisionHandler : MonoBehaviour
     {
         Vector3 origin = triggeredCheckpoint.position;
         Vector3 forward = carPointer.GetCar().transform.forward;
-        Vector3 direction = Vector3.Normalize(triggeredCheckpoint.forward * Vector3.Dot(triggeredCheckpoint.forward, forward));
+        Vector3 direction = NormalizeVectorDirection(triggeredCheckpoint.forward, forward);
 
         float remainingDistance = 40f;
         int i = 0;
@@ -189,7 +215,7 @@ public class CarCollisionHandler : MonoBehaviour
                 origin = hit.transform.position + direction * 0.5f;
                 // get the direction of the next checkpoint
                 // the normalize and dot product is to get relative to the direction the car is facing
-                direction = Vector3.Normalize(hit.normal * Vector3.Dot(hit.normal, direction));
+                direction = NormalizeVectorDirection(hit.normal, direction);
 
                 nextCheckpoint = hit;
                 nextCheckpointDirection = direction;

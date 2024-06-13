@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -68,10 +65,11 @@ public class CarController : MonoBehaviour
     public void SetNextCheckpoint(RaycastHit nextCheckpoint)
     {
         MeshRenderer mesh;
+        // handle prev checkpoint color
         if (this.nextCheckpoint.collider != null)
             if (this.nextCheckpoint.collider.gameObject.TryGetComponent(out mesh))
                 mesh.material = unselectedCheckpoint;
-
+        // handle next checkpoint color
         this.nextCheckpoint = nextCheckpoint;
         if (this.nextCheckpoint.collider.gameObject.TryGetComponent(out mesh))
             mesh.material = selectedCheckpoint;
@@ -198,9 +196,9 @@ public class CarController : MonoBehaviour
         carModel.transform.rotation = Quaternion.Slerp(carModel.transform.rotation, targetRotation, 0.1f);
     }
 
-    public void SetLastCheckpointPosition(Vector3 position, Quaternion rotation)
+    public void SetCheckpointReturnPosition(Vector3 position, Quaternion rotation)
     {
-        lastCheckpointPosition = position + new Vector3(0f, 3f, 0f); // spawns on air
+        lastCheckpointPosition = position + new Vector3(0f, 2f, 0f); // spawns on air
         lastCheckpointRotation = rotation;
     }
     public void ReturnToLastCheckpoint()
