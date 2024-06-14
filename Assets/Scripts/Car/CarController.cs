@@ -106,20 +106,21 @@ public class CarController : MonoBehaviour
         speedInput = 0f;
 
         // accelerates or reverses based on verticalInput
-        // TODO: talvez trocar para que os inputs sejam sempre 0, 1, e -1, e fazer com que ele acelere suavemente por um slerp?
         if (verticalInput > 0)
-        {
             speedInput = verticalInput * forwardAcceleration * 1000f;
-        }
         else
-        {
             speedInput = verticalInput * reverseAcceleration * 1000f;
-        }
+
         RotateCarOnSurface(horizontalInput, verticalInput);
 
         SteerWheels(horizontalInput);
 
         transform.position = carRigidbody.transform.position;
+
+
+        // returns to last checkpoint when R is pressed
+        if (Input.GetKeyDown(KeyCode.Z))
+            ReturnToSpawn();
     }
 
     private void FixedUpdate()

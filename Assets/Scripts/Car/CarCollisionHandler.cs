@@ -19,10 +19,10 @@ public class CarCollisionHandler : MonoBehaviour
         onCollisionStayPoints = -0.1f;
 
     private RaycastHit nextCheckpoint;
-    private Vector3 nextCheckpointDirection;
+    private Vector3 nextCheckpointDirection, prevCheckpointDirection;
     private Coroutine checkpointTimer;
 
-    private readonly float checkpointTimerSeconds = 3.0f;
+    private readonly float checkpointTimerSeconds = 2.5f;
 
     private void Start()
     {
@@ -67,8 +67,9 @@ public class CarCollisionHandler : MonoBehaviour
                 carController.SetNextCheckpoint(nextCheckpoint);
                 carController.SetNextCheckpointDirection(nextCheckpointDirection);
                 // handle checkpoint return position
-                Vector3 direction = NormalizeVectorDirection(colliderTransform.forward, nextCheckpointDirection);
+                Vector3 direction = NormalizeVectorDirection(colliderTransform.forward, prevCheckpointDirection);
                 carController.SetCheckpointReturnPosition(colliderTransform.position, Quaternion.LookRotation(direction));
+                prevCheckpointDirection = direction;
                 HandleCheckpointTimer();
             }
         }
@@ -169,7 +170,7 @@ public class CarCollisionHandler : MonoBehaviour
     public RaycastHit GetFirstCheckpoint(Vector3 direction)
     {
         Vector3 origin = transform.position;
-        nextCheckpointDirection = direction;
+        prevCheckpointDirection = direction;
 
         float remainingDistance = 40f;
         int i = 0;
