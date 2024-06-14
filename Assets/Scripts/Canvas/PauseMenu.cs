@@ -6,6 +6,10 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     public GameObject audioParent;
+    public CountdownController countdownController;
+    public LapTimerController lapTimerController;
+
+
     private bool isPaused = false;
     private AudioSource[] allAudioSources;
 
@@ -15,9 +19,9 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         pauseMenuPanel.SetActive(false);
         if (audioParent != null)
-            {
-                allAudioSources = audioParent.GetComponentsInChildren<AudioSource>();
-            }
+        {
+            allAudioSources = audioParent.GetComponentsInChildren<AudioSource>();
+        }
     }
 
     void Update()
@@ -61,9 +65,20 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    public void MainMenu () {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene (0);
+    public void Restart()
+    {
+        // lapTimerController.ResetTimer();
+        // countdownController.ResetGame(1f);
+        // Resume();
+        Resume();
+        SceneManager.LoadScene(2);
+
+    }
+
+    public void MainMenu()
+    {
+        Resume();
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()

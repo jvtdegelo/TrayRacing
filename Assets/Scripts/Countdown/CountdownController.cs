@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,11 @@ public class CountdownController : MonoBehaviour
 
     void Start()
     {
+        ResetGame(0f);
+    }
+
+    public void ResetGame(float extraInitialWait) 
+    {
         // disables all car controllers
         carControllers = new CarController[cars.Length];
 
@@ -27,12 +34,16 @@ public class CountdownController : MonoBehaviour
 
         countdownText = countDown.GetComponent<TMPro.TextMeshProUGUI>();
 
-        StartCoroutine(CountStart());
+        StartCoroutine(CountStart(extraInitialWait));
+
     }
 
-    IEnumerator CountStart()
+    IEnumerator CountStart(float extraInitialWait)
     {
+        yield return new WaitForSeconds(extraInitialWait);
         yield return new WaitForSeconds(0.5f);
+        countdownText.color = new Color32(255, 255, 255, 255);
+        countDown.SetActive(true);
         countdownText.text = "3";
         getReady.Play();
         countDown.SetActive(true);
