@@ -46,6 +46,7 @@ public class CarController : MonoBehaviour
         this.carRigidbody = carRigidbody;
         carRigidbody.name = name + " Rigidbody";
         carRigidbody.transform.parent = null;
+        carRigidbody.tag = gameObject.tag;
         // adds the carPointer to the rigidbody
         if (carRigidbody.TryGetComponent(out CarPointer carPointer))
             carPointer.SetCar(gameObject);
