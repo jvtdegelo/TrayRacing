@@ -15,7 +15,10 @@ public class LightingManager : MonoBehaviour
         Midday = 12f,
         Dusk = 18f;
 
-    private readonly float HoursPerSecond = 0.2f; // how many hours of a day passes per second of gameplay
+    private readonly float
+        HoursPerSecond = 0.2f, // how many hours of a day passes per second of gameplay
+        FogMin = 0f,
+        FogMax = 0.05f;
 
     private void Start()
     {
@@ -41,9 +44,26 @@ public class LightingManager : MonoBehaviour
         }
     }
 
-    private void UpdateLighting(float timePercent)
+    private void UpdateFogIntensity(float timePercent)
     {
         //Set ambient and fog
+        if (timePercent >= 0.25 && timePercent <= 0.75)
+        {
+            float result = FogMin;
+            if (timePercent <= 0.35f)
+                result = Utils.MapRange(timePercent, 0.25f, 0.35f, FogMax, FogMin);
+            if (timePercent >= 0.65f)
+                result = Utils.MapRange(timePercent, 0.55f, 0.75f, FogMin, FogMax);
+            RenderSettings.fogDensity = result;
+        }
+        else
+            RenderSettings.fogDensity = FogMax;
+    }
+
+    private void UpdateLighting(float timePercent)
+    {
+        UpdateFogIntensity(timePercent);
+
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
 
