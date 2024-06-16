@@ -113,7 +113,7 @@ public class CarCollisionHandler : MonoBehaviour
     {
         if (carAgent == null) return;
 
-        Debug.Log("initializing timer");
+        // Debug.Log("initializing timer");
         // Resets the timer if it has already started
         if (checkpointTimer != null)
             StopCoroutine(checkpointTimer);
@@ -127,7 +127,7 @@ public class CarCollisionHandler : MonoBehaviour
     {
         // Wait for 5 seconds
         yield return new WaitForSeconds(checkpointTimerSeconds);
-        Debug.Log("checkpointTimer timeout, returning to last checkpoint");
+        // Debug.Log("checkpointTimer timeout, returning to last checkpoint");
 
         carController.ReturnToLastCheckpoint();
 
