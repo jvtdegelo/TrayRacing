@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8792874488473979308}
   - component: {fileID: 811916802595921321}
   - component: {fileID: 8103086022027419809}
-  m_Layer: 9
-  m_Name: Car Rigidbody
+  m_Layer: 7
+  m_Name: Player Car Rigidbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
