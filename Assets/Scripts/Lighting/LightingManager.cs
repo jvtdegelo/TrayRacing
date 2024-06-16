@@ -19,7 +19,7 @@ public class LightingManager : MonoBehaviour
 
     private void Start()
     {
-        float[] TimesArray = { Midnight };//, Dawn, Midday, Dusk };
+        float[] TimesArray = { Midnight, Dawn, Midday, Dusk };
         TimeOfDay = TimesArray[Random.Range(0, TimesArray.Length)];
     }
 
@@ -31,8 +31,8 @@ public class LightingManager : MonoBehaviour
         if (Application.isPlaying)
         {
             //(Replace with a reference to the game time)
-            // TimeOfDay += HoursPerSecond * Time.deltaTime;
-            // TimeOfDay %= 24; //Modulus to ensure always between 0-24
+            TimeOfDay += HoursPerSecond * Time.deltaTime;
+            TimeOfDay %= 24; //Modulus to ensure always between 0-24
             UpdateLighting(TimeOfDay / 24f);
         }
         else
