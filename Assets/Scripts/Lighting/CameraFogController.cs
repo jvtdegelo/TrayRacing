@@ -22,12 +22,12 @@ public class CameraFogController : MonoBehaviour
     {
         if (camera.TryGetComponent<NoFogCamera>(out _))
         {
-            Debug.Log(camera.gameObject.name + " is NoFogCamera");
+            // Debug.Log(camera.gameObject.name + " is NoFogCamera");
             RenderSettings.fog = false;
         }
         else
         {
-            Debug.Log(camera.gameObject.name + " is not NoFogCamera");
+            // Debug.Log(camera.gameObject.name + " is not NoFogCamera");
             RenderSettings.fog = IsThereFogInScene;
         }
     }

@@ -18,19 +18,18 @@ public class CountdownController : MonoBehaviour
 
     void Start()
     {
+        carControllers = new CarController[cars.Length];
+        for (int i = 0; i < cars.Length; i++)
+            carControllers[i] = cars[i].GetComponent<CarController>();
         ResetGame(0f);
     }
 
-    public void ResetGame(float extraInitialWait) 
+    public void ResetGame(float extraInitialWait)
     {
         // disables all car controllers
-        carControllers = new CarController[cars.Length];
+        foreach (CarController carController in carControllers)
 
-        for (int i = 0; i < cars.Length; i++)
-        {
-            carControllers[i] = cars[i].GetComponent<CarController>();
-            carControllers[i].enabled = false;
-        }
+            carController.enabled = false;
 
         countdownText = countDown.GetComponent<TMPro.TextMeshProUGUI>();
 
@@ -72,9 +71,6 @@ public class CountdownController : MonoBehaviour
 
         // enables car movement
         foreach (CarController carController in carControllers)
-        {
             carController.enabled = true;
-        }
-
     }
 }
