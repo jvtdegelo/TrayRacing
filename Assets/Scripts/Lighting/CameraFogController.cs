@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class MinimapCameraFog : MonoBehaviour
+public class CameraFogController : MonoBehaviour
 {
-    public bool IsThereFogInScene;
+    private bool IsThereFogInScene;
 
     private void Start()
     {
         IsThereFogInScene = RenderSettings.fog;
+        Debug.Log("fog in scene: " + IsThereFogInScene);
         RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
         RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
     }
@@ -19,11 +20,16 @@ public class MinimapCameraFog : MonoBehaviour
 
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        if (camera.TryGetComponent<MinimapCameraFog>(out _))
+        if (camera.TryGetComponent<NoFogCamera>(out _))
+        {
+            Debug.Log(camera.gameObject.name + " is NoFogCamera");
             RenderSettings.fog = false;
+        }
         else
+        {
+            Debug.Log(camera.gameObject.name + " is not NoFogCamera");
             RenderSettings.fog = IsThereFogInScene;
-
+        }
     }
     void OnEndCameraRendering(ScriptableRenderContext context, Camera camera)
     {
