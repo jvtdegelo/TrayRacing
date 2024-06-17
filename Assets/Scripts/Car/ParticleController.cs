@@ -9,22 +9,24 @@ public class ParticleController : MonoBehaviour
     public float maximumSpeed = 50f;
     public Color
         groundColor = new Color(0.8f, 0.1f, 0.1f), // Cinza
-        dirtColor = new Color(0.96f, 0.87f, 0.70f); // Bege
+        dirtColor = new Color(0.96f, 0.87f, 0.70f), // Bege
+        groundTrailColor = new Color(0, 0, 0),
+        dirtTrailColor = new Color(0.96f, 0.87f, 0.70f);
     public LayerMask GroundLayer, DirtLayer;
     public Transform rayPoint;
     public float rayLength = .5f;
     private float emissionRate, maxEmission = 25f;
     public ParticleSystem particle;
-    public Rigidbody carRigidbody;
+    public TrailRenderer trailRenderer;
+    private Rigidbody carRigidbody;
+    private CarController carController;
 
     void Start() { }
 
     void Update() { }
 
-    public void SetCarRigidbody(Rigidbody carRigidbody)
-    {
-        this.carRigidbody = carRigidbody;
-    }
+    public void SetCarRigidbody(Rigidbody carRigidbody) { this.carRigidbody = carRigidbody; }
+    public void SetCarController(CarController carController) { this.carController = carController; }
 
     private void FixedUpdate()
     {
@@ -49,6 +51,19 @@ public class ParticleController : MonoBehaviour
             SetParticleColor(dirtColor);
 
         SetEmissionRate(emissionRate);
+
+        if (carController.isTurning)
+        {
+            trailRenderer.emitting = true;
+            // trailRenderer.material.color = isOnGround ? groundTrailColor : dirtTrailColor;
+            // Color trailColor = isOnGround ? groundTrailColor : dirtTrailColor;
+            // trailRenderer.startColor = trailColor;
+            // trailRenderer.endColor = trailColor;//isOnGround ? groundTrailColor : dirtTrailColor;
+        }
+        else
+        {
+            trailRenderer.emitting = false;
+        }
     }
 
     /// <summary> Set the color of the ParticleSystem </summary>

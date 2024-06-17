@@ -71,6 +71,7 @@ public class CarCreator : MonoBehaviour
 
                 // adds the car rigidbody to the particle controller (required)
                 ParticleController particleController = particleControllerInstance.GetComponent<ParticleController>();
+                particleController.SetCarController(carController);
                 particleController.SetCarRigidbody(carController.GetCarRigidbody());
 
                 // sets the front wheels to the car controller (for it to steer them)
