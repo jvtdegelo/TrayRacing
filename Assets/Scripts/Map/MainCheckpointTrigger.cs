@@ -32,7 +32,8 @@ public class MainCheckpointTrigger : MonoBehaviour
 
     private AudioSource[] allAudioSources;
 
-    void Start() { 
+    void Start() {
+        finishPanel.SetActive(false);
         finishTimesText = finishPanel.transform.Find("FinishTimesText").GetComponent<TMPro.TextMeshProUGUI>();
         winOrLoseText = finishPanel.transform.Find("WinLoseText").GetComponent<TMPro.TextMeshProUGUI>();
         
