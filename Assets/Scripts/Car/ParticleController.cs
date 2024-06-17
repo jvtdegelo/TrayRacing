@@ -8,7 +8,7 @@ public class ParticleController : MonoBehaviour
 
     public float maximumSpeed = 50f;
     public Color
-        groundColor = new Color(0.4f, 0.2f, 0.1f), // Marrom
+        groundColor = new Color(0.8f, 0.1f, 0.1f), // Cinza
         dirtColor = new Color(0.96f, 0.87f, 0.70f); // Bege
     public LayerMask GroundLayer, DirtLayer;
     public Transform rayPoint;

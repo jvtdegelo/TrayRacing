@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MainCheckpointTrigger : MonoBehaviour
@@ -24,9 +25,22 @@ public class MainCheckpointTrigger : MonoBehaviour
 
     int botFinishIndex = 1;
 
+    public GameObject playerCar;
+
+    private PlayerInput playerInput;
+    public GameObject audioParent;
+
+    private AudioSource[] allAudioSources;
+
     void Start() { 
         finishTimesText = finishPanel.transform.Find("FinishTimesText").GetComponent<TMPro.TextMeshProUGUI>();
         winOrLoseText = finishPanel.transform.Find("WinLoseText").GetComponent<TMPro.TextMeshProUGUI>();
+        
+        if (audioParent != null)
+        {
+            allAudioSources = audioParent.GetComponentsInChildren<AudioSource>();
+        }
+
         SetInitialFinishTimeText();
     }
 
@@ -35,17 +49,21 @@ public class MainCheckpointTrigger : MonoBehaviour
         Debug.Log(this.name + " triggered, firstTime: " + isFirstTimePlayerTriggered + " | tag: " + car.tag);
         if (car.CompareTag("AI") && isFirstTimePlayerTriggered == false)
         {
-            finishTimesText.text += "AI" + botFinishIndex + ": ";
-            finishTimesText.text += Time.time.ToString("F2") + "s\n";
-            botFinishIndex++;
-            hasPlayerWon = false;
+            if (botFinishIndex < 5)
+            {
+                Debug.Log("opa bao " + botFinishIndex);
+                finishTimesText.text += "AI" + botFinishIndex + ": ";
+                finishTimesText.text += Time.timeSinceLevelLoad.ToString("F2") + "s\n";
+                botFinishIndex++;
+                hasPlayerWon = false;
+            }
         }
 
         if (car.CompareTag("Player"))
         {
             if (isFirstTimePlayerTriggered == false)
             {
-                playerFinishTime = Time.time;
+                playerFinishTime = Time.timeSinceLevelLoad;
                 finishPanel.SetActive(true);
                 ShowFinishPanel();
                 // lapDisplay.UpdateTimer();
@@ -71,7 +89,18 @@ public class MainCheckpointTrigger : MonoBehaviour
 
 
     private void ShowFinishPanel()
-    {
+    {           
+        playerInput = playerCar.GetComponent<PlayerInput>();
+        playerInput.enabled = false;
+        foreach (AudioSource audio in allAudioSources)
+        {
+            audio.Pause();
+        }
+
+
+        fpsCounter.SetActive(false);
+        lapDisplayUI.SetActive(false);
+
         finishPanel.SetActive(true);
     
         finishTimesText.text += "You: ";

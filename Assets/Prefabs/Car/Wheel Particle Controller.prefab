@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSpeed: 50
+  groundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   dirtColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
-  groundColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -57,7 +57,6 @@ MonoBehaviour:
     m_Bits: 1024
   rayPoint: {fileID: 2953563905588795249}
   rayLength: 0.5
-  maxEmission: 25
   particle: {fileID: 55326092379676121}
   carRigidbody: {fileID: 0}
 --- !u!1 &3580350636430165413
