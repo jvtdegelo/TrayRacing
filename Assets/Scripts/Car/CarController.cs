@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -34,6 +35,9 @@ public class CarController : MonoBehaviour
     private RaycastHit nextCheckpoint;
     private Vector3 nextCheckpointDirection;
     private CarCollisionHandler carCollisionHandler;
+
+    public bool isTurning = false;
+    public float rotStr = 7f, velMag = 13f;
 
     public void SetCarModel(GameObject carModel) { this.carModel = carModel; }
     public void SetFrontLeftWheel(Transform frontLeftWheel) { this.frontLeftWheel = frontLeftWheel; }
@@ -171,8 +175,13 @@ public class CarController : MonoBehaviour
         // the sign of the rotation is given both by the horizontalInput and the verticalInput
         if (isOnGround || isOnDirt || isOnContact)
         {
-            float rotationStrength = turnStrength * horizontalInput * verticalInput * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, rotationStrength, 0f));
+            float rotationStrength = turnStrength * horizontalInput * verticalInput;
+            float rotationStrengthTime = rotationStrength * Time.deltaTime;
+            Debug.Log(rotationStrength + " " + carRigidbody.velocity.magnitude);
+            isTurning = Math.Abs(rotationStrength) == turnStrength &&
+                ((isOnGround && carRigidbody.velocity.magnitude > 20f) ||
+                (isOnDirt && carRigidbody.velocity.magnitude > 13f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, rotationStrengthTime, 0f));
         }
     }
 
