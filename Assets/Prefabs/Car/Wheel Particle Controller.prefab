@@ -59,7 +59,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   rayPoint: {fileID: 2953563905588795249}
-  rayLength: 0.5
+  rayLength: 0.4
   particle: {fileID: 55326092379676121}
   trailRenderer: {fileID: 8337836208088665588}
 --- !u!1 &3580350636430165413
@@ -89,7 +89,7 @@ Transform:
   m_GameObject: {fileID: 3580350636430165413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4930,7 +4930,7 @@ Transform:
   m_GameObject: {fileID: 7296067503609746732}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

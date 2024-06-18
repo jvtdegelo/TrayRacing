@@ -44,6 +44,8 @@ public class ParticleController : MonoBehaviour
             emissionRate = Utils.MapRange(speed, 0, maximumSpeed, 0, maxEmission);
         }
 
+        trailRenderer.emitting = carController.isTurning && (isOnGround || isOnDirt);
+
         // defines the color based on the terrain
         if (isOnGround)
             SetParticleColor(groundColor);
@@ -52,18 +54,6 @@ public class ParticleController : MonoBehaviour
 
         SetEmissionRate(emissionRate);
 
-        if (carController.isTurning)
-        {
-            trailRenderer.emitting = true;
-            // trailRenderer.material.color = isOnGround ? groundTrailColor : dirtTrailColor;
-            // Color trailColor = isOnGround ? groundTrailColor : dirtTrailColor;
-            // trailRenderer.startColor = trailColor;
-            // trailRenderer.endColor = trailColor;//isOnGround ? groundTrailColor : dirtTrailColor;
-        }
-        else
-        {
-            trailRenderer.emitting = false;
-        }
     }
 
     /// <summary> Set the color of the ParticleSystem </summary>

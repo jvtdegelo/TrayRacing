@@ -177,7 +177,7 @@ public class CarController : MonoBehaviour
         {
             float rotationStrength = turnStrength * horizontalInput * verticalInput;
             float rotationStrengthTime = rotationStrength * Time.deltaTime;
-            Debug.Log(rotationStrength + " " + carRigidbody.velocity.magnitude);
+            // Debug.Log(rotationStrength + " " + carRigidbody.velocity.magnitude);
             isTurning = Math.Abs(rotationStrength) == turnStrength &&
                 ((isOnGround && carRigidbody.velocity.magnitude > 20f) ||
                 (isOnDirt && carRigidbody.velocity.magnitude > 13f));
