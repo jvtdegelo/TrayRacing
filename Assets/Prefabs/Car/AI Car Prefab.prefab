@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 180900990373552403}
   - component: {fileID: 6913585082736967958}
   - component: {fileID: 3373326509758847873}
+  - component: {fileID: 1711679819802582616}
   m_Layer: 9
   m_Name: AI Car Prefab
   m_TagString: Untagged
@@ -115,6 +116,9 @@ MonoBehaviour:
     m_Bits: 2048
   groundRayLength: 1
   maxTurnWheel: 25
+  isTurning: 0
+  rotStr: 7
+  velMag: 13
   selectedCheckpoint: {fileID: 2100000, guid: 47db63ce3304dc942a237bd968e76bfa, type: 2}
   unselectedCheckpoint: {fileID: 2100000, guid: 367f4211c45b41f4d9b676630fd63f33,
     type: 2}
@@ -206,6 +210,19 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
+--- !u!114 &1711679819802582616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872141712925967253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad29f52705f813d42b9e2250aea3f0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 696440584612275552, guid: c89c2f76c811393418121ef840bbb3cb, type: 3}
 --- !u!1001 &1584661282966712376
 PrefabInstance:
   m_ObjectHideFlags: 0

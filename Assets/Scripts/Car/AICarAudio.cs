@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CarController))]
-public class CarAudio : MonoBehaviour
+public class AICarAudio : MonoBehaviour
 {
     private CarController carController;
 
@@ -11,13 +11,12 @@ public class CarAudio : MonoBehaviour
         minSpeed = 0,
         maxSpeed = 4000.0f;
 
-    public AudioSource engine, honk;
+    public AudioSource engine;
 
     void Start()
     {
         carController = GetComponent<CarController>();
 
-        // TODO: se der tempo refatorar aqui pra adicionar o audio em cada carInstance
         AddAudioSource();
     }
 
@@ -26,7 +25,6 @@ public class CarAudio : MonoBehaviour
         float speed = Mathf.Abs(carController.speedInput);
         float pitch = Utils.MapRange(speed, minSpeed, maxSpeed, minPitch, maxPitch);
         engine.pitch = pitch;
-        PlayHorn();
     }
 
     private void AddAudioSource()
@@ -39,18 +37,4 @@ public class CarAudio : MonoBehaviour
         engine.pitch = minPitch;
     }
 
-    private void PlayHorn()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!honk.isPlaying)
-                honk.Play();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if (honk.isPlaying)
-                honk.Stop();
-        }
-    }
 }
