@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.850959, g: 0.7686092, b: 0.5646954, a: 1}
+  m_FogColor: {r: 0.9999954, g: 0.99999297, b: 0.9999867, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.83133364, g: 0.695532, b: 0.33727315, a: 1}
+  m_AmbientSkyColor: {r: 0.9999949, g: 0.9777119, b: 0.67609024, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 705507994}
   Preset: {fileID: 11400000, guid: 01b6722dfb834be4b82cd18dcc080ee2, type: 2}
-  TimeOfDay: 18
+  TimeOfDay: 12
 --- !u!850595691 &173135987
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1797,7 +1797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534928458}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000078231096, y: 0.000023543356, z: -0.000014701243, w: 1}
+  m_LocalRotation: {x: 0.000078231096, y: -0.00002370423, z: 0.000014796546, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2234,8 +2234,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596938183}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31092596, y: -0.000017812275, z: 0.000021297625, w: 0.95043415}
-  m_LocalPosition: {x: -1.929076e-10, y: 15.910531, z: -17.360332}
+  m_LocalRotation: {x: 0.31092548, y: -0.000017930379, z: 0.000021432008, w: 0.9504343}
+  m_LocalPosition: {x: 0.00035208542, y: 15.913247, z: -17.357841}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2928,7 +2928,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.26622963, g: 0.26622963, b: 0.26622963, a: 1}
+  m_Color: {r: 0.3890862, g: 0.3890862, b: 0.3890862, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2987,7 +2987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.087155804, y: -0.000000043545054, z: -0.9961947, w: -0.000000003809701}
+  m_LocalRotation: {x: 0.061628457, y: 0.70441604, z: -0.70441604, w: 0.061628457}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3816,7 +3816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27544883, y: 1.0754492e-11, z: -3.0815183e-12, w: 0.96131575}
+  m_LocalRotation: {x: 0.27544883, y: -1.1606221e-11, z: 3.325567e-12, w: 0.96131575}
   m_LocalPosition: {x: -76.72, y: 3.51, z: -51.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6352,9 +6352,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startRaceTracks:
+  - {fileID: 6137762519006516816, guid: 24909ac35101322409a321d3673ccbf7, type: 3}
+  - {fileID: 6137762519006516816, guid: 27e9ece02c70824408fb45f2e07fe51e, type: 3}
   - {fileID: 6137762519006516816, guid: a957548829444f843bda6f101ed35c9c, type: 3}
   normalRaceTracks:
   - {fileID: 6137762519006516816, guid: 2e9ef0513270c8e4895da3c3e1c77941, type: 3}
+  - {fileID: 6137762519006516816, guid: bd367877fcf654547ab42a105e7cd251, type: 3}
+  - {fileID: 6137762519006516816, guid: 785267af46179b64ebe6a515b5ed29c4, type: 3}
+  - {fileID: 6137762519006516816, guid: b72156e69ac20e6488f08ea12decfd62, type: 3}
+  - {fileID: 6137762519006516816, guid: f638e44ed1978264db7f84c0f8410592, type: 3}
 --- !u!1 &1523690899
 GameObject:
   m_ObjectHideFlags: 0
