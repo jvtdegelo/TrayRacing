@@ -6,7 +6,7 @@ using UnityEngine;
 public class ParticleController : MonoBehaviour
 {
 
-    public float maximumSpeed = 50f;
+    public float maximumSpeed = 25f;
     public Color
         groundColor = new Color(0.8f, 0.1f, 0.1f), // Cinza
         dirtColor = new Color(0.96f, 0.87f, 0.70f), // Bege
@@ -15,7 +15,7 @@ public class ParticleController : MonoBehaviour
     public LayerMask GroundLayer, DirtLayer;
     public Transform rayPoint;
     public float rayLength = .5f;
-    private float emissionRate, maxEmission = 25f;
+    public float emissionRate, maxEmission = 50f;
     public ParticleSystem particle;
     public TrailRenderer trailRenderer;
     private Rigidbody carRigidbody;

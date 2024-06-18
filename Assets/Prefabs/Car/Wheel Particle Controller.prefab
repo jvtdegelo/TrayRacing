@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abfcc122a623a64b84949da5fe30ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumSpeed: 50
-  groundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  maximumSpeed: 25
+  groundColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5058824}
   dirtColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
   groundTrailColor: {r: 0, g: 0, b: 0, a: 1}
   dirtTrailColor: {r: 0.96, g: 0.87, b: 0.7, a: 1}
@@ -60,6 +60,8 @@ MonoBehaviour:
     m_Bits: 1024
   rayPoint: {fileID: 2953563905588795249}
   rayLength: 0.4
+  emissionRate: 0
+  maxEmission: 25
   particle: {fileID: 55326092379676121}
   trailRenderer: {fileID: 8337836208088665588}
 --- !u!1 &3580350636430165413
@@ -231,7 +233,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -932,7 +934,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
